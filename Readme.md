@@ -1,10 +1,10 @@
-# Rocketseat - Semana Omnistack 10.0
+## Rocketseat - Semana Omnistack 10.0
 
-## Atualização: 13 de janeiro de 2020
-## Criação: 13 de janeiro de 2020
-## Prática : @douglasabnovato
+### Atualização: 13 de janeiro de 2020
+### Criação: 13 de janeiro de 2020
+### Prática : @douglasabnovato
 
-## Ferramentas : 
+### Ferramentas : 
 
 ![ReactJS](/images/logo-reactjs.jpg)
 ![React Native](/images/logo-react-native.png)
