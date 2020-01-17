@@ -29,6 +29,12 @@
 
 #### 14/01 - Criando a base da aplicação 
 - backend com Nodejs
+- regras de negócio 
+- conexão com banco de dados
+- envio de e-mail
+- comunicação com webservices
+- autenticação do usuário 
+- criptografia e segurança
 
 #### 15/01 - Construindo a interface web
 
