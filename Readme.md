@@ -21,6 +21,7 @@
 - Waze de desenvolvedores.
 
 #### 13/01 - Conhecendo a Omnistack.
+- Frontend pode ser web, mobile, ou serviços externos
 - Configurando o ambiente de desenvolvimento
 - NodeJs via package manager
 - Npm
@@ -28,13 +29,14 @@
 - VSCode
 
 #### 14/01 - Criando a base da aplicação 
-- backend com Nodejs
+**backend com Nodejs**:
 - regras de negócio 
 - conexão com banco de dados
 - envio de e-mail
 - comunicação com webservices
 - autenticação do usuário 
 - criptografia e segurança
+- Json a estrutura de dados para interligar o backend com o frontend
 
 #### 15/01 - Construindo a interface web
 
