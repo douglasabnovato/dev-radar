@@ -38,6 +38,9 @@
 - criptografia e segurança
 - Json a estrutura de dados para interligar o backend com o frontend
 
+Vamos para o projeto backend
+- `yarn init -y` na pasta C:\douglasabnovato\rocketseat\omnistack-10\backend
+
 #### 15/01 - Construindo a interface web
 
 #### 16/01 - Desenvolvendo o app mobile
