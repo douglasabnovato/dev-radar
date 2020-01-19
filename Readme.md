@@ -1,6 +1,6 @@
 ## Rocketseat - Semana Omnistack 10.0
 
-### Atualização: 16 de janeiro de 2020 - 23:34
+### Atualização: 19 de janeiro de 2020 - 16:17
 ### Criação: 13 de janeiro de 2020
 ### Prática : @douglasabnovato
 
@@ -42,7 +42,7 @@ Vamos para o projeto backend
 - `yarn init -y` : na pasta C:\douglasabnovato\rocketseat\omnistack-10\backend
 - `package.json` : arquivo de configuração
 - `yarn add express` : auxilia na criação de rotas
-- 
+- `node index.js`: executa nosso servidor
 
 #### 15/01 - Construindo a interface web
 
