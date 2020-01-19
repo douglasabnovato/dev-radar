@@ -39,9 +39,10 @@
 - Json a estrutura de dados para interligar o backend com o frontend
 
 Vamos para o projeto backend
-- `yarn init -y` na pasta C:\douglasabnovato\rocketseat\omnistack-10\backend
-- `package.json` arquivo de configuração
-- `yarn add express` biblioteca para controlar dependências do projeto
+- `yarn init -y` : na pasta C:\douglasabnovato\rocketseat\omnistack-10\backend
+- `package.json` : arquivo de configuração
+- `yarn add express` : auxilia na criação de rotas
+- 
 
 #### 15/01 - Construindo a interface web
 
