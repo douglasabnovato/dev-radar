@@ -2,8 +2,13 @@ const express = require('express');
 
 const app = express();
 
-app.get('/', (req, res) => {
-    return res.json({ message: 'Hello Omnistack 10.0 !' });
+app.delete("/users/:id", (request, response) => {
+    console.log(request.params)
+
+    let text = 'Hello API REST!';
+    console.log(text);
+
+    return response.json({ message: text });
 });
 
-app.listen(3333);
+app.listen(3333); 

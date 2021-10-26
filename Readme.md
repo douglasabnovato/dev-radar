@@ -72,6 +72,12 @@ Você pode visualizar o layout do projeto através [desse link](https://www.figm
 - [x] `yarn add express` : auxilia na criação de rotas
 - [x] `node index.js`: executa nosso servidor
 - [x] `npm init -y`: vou usar npm
+- [x] `npm install nodemon - D`: restartar o servidor
+- [x] Ferramenta Insomnia: configurar rest
+- [x] Listar Usuários - GET: criar nova requisição
+- [x] Métodos HTTP: get, post, put, delete
+- [x] Tipos de parâmetros: query params (request.query: filtros, ordenação, paginação, ...), body
+- [x] Tipos de parâmetros: route params (request.params: identificar um recurso na alteração ou remoção)
 
 ## Qual a proposta deste projeto - parte 2? 
  
