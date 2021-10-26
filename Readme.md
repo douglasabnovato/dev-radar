@@ -44,6 +44,10 @@ O WazeDev é uma que segue alguns parâmetros para localizar desenvolvedores e a
 Você pode visualizar o layout do projeto através [desse link](https://www.figma.com/file/s4fytPFbDiSkv4GPSfKaLE/Jobs-Planning). 
 É necessário ter conta no [Figma](https://figma.com) para acessá-lo.
 
+## configurar ambiente
+
+- nodejs
+
 ## Qual a proposta deste projeto - parte 1? 
  
 - Criando a base da aplicação - backend com Nodejs 
