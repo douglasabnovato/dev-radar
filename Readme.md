@@ -76,8 +76,9 @@ Você pode visualizar o layout do projeto através [desse link](https://www.figm
 - [x] Ferramenta Insomnia: configurar rest
 - [x] Listar Usuários - GET: criar nova requisição
 - [x] Métodos HTTP: get, post, put, delete
-- [x] Tipos de parâmetros: query params (request.query: filtros, ordenação, paginação, ...), body
+- [x] Tipos de parâmetros: query params (request.query: filtros, ordenação, paginação, ...), 
 - [x] Tipos de parâmetros: route params (request.params: identificar um recurso na alteração ou remoção)
+- [x] Tipos de parâmetros: body (dados para a criação ou alteração de um registro)
 
 ## Qual a proposta deste projeto - parte 2? 
  

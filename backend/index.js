@@ -2,8 +2,10 @@ const express = require('express');
 
 const app = express();
 
-app.delete("/users/:id", (request, response) => {
-    console.log(request.params)
+app.use(express.json());
+
+app.post("/users", (request, response) => {
+    console.log(request.body)
 
     let text = 'Hello API REST!';
     console.log(text);
