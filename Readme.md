@@ -61,15 +61,15 @@ Você pode visualizar o layout do projeto através [desse link](https://www.figm
 - [x] `yarn add express` : auxilia na criação de rotas
 - [x] `node index.js`: executa nosso servidor
 
-## Qual a proposta deste projeto - parte 1? 
+## Qual a proposta deste projeto - parte 2? 
  
 - Construindo a interface web 
 
-## Qual a proposta deste projeto - parte 1? 
+## Qual a proposta deste projeto - parte 3? 
  
 - Desenvolvendo o app mobile 
 
-## Qual a proposta deste projeto - parte 1? 
+## Qual a proposta deste projeto - parte 4? 
  
 - Funcionalidades Avançadas 
 
