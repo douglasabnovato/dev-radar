@@ -47,6 +47,11 @@ Você pode visualizar o layout do projeto através [desse link](https://www.figm
 ## configurar ambiente
 
 - nodejs
+- chocolatey 
+- npm
+- yarn
+- vscode
+- extensões vscode: drácula e material icon theme
 
 ## Qual a proposta deste projeto - parte 1? 
  
