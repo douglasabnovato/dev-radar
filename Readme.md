@@ -71,6 +71,7 @@ Você pode visualizar o layout do projeto através [desse link](https://www.figm
 - [x] `package.json` : arquivo de configuração
 - [x] `yarn add express` : auxilia na criação de rotas
 - [x] `node index.js`: executa nosso servidor
+- [x] `npm init -y`: vou usar npm
 
 ## Qual a proposta deste projeto - parte 2? 
  
@@ -88,7 +89,7 @@ Você pode visualizar o layout do projeto através [desse link](https://www.figm
  
 - Funcionalidades Avançadas 
 
-- [ ] Tarefas
+- [ ] Tarefas 
 
 ## :memo: Licença
 

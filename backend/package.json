@@ -3,7 +3,7 @@
   "version": "1.0.0",
   "main": "index.js",
   "license": "MIT",
-  "scripts":{
+  "scripts": {
     "dev": "nodemon index.js"
   },
   "dependencies": {
@@ -11,5 +11,8 @@
   },
   "devDependencies": {
     "nodemon": "^2.0.2"
-  }
+  },
+  "keywords": [],
+  "author": "",
+  "description": ""
 }
