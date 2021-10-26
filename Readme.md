@@ -56,6 +56,7 @@ Você pode visualizar o layout do projeto através [desse link](https://www.figm
 ## Qual a proposta deste projeto - parte 1? 
  
 - Criando a base da aplicação - backend com Nodejs 
+
 - [x] regras de negócio 
 - [x] conexão com banco de dados
 - [x] envio de e-mail
@@ -65,6 +66,7 @@ Você pode visualizar o layout do projeto através [desse link](https://www.figm
 - [x] Json a estrutura de dados para interligar o backend com o frontend
 
 - Vamos para o projeto backend
+
 - [x] `yarn init -y` : na pasta C:\douglasabnovato\rocketseat\omnistack-10\backend
 - [x] `package.json` : arquivo de configuração
 - [x] `yarn add express` : auxilia na criação de rotas
@@ -74,13 +76,19 @@ Você pode visualizar o layout do projeto através [desse link](https://www.figm
  
 - Construindo a interface web 
 
+- [ ] Tarefas
+
 ## Qual a proposta deste projeto - parte 3? 
  
 - Desenvolvendo o app mobile 
 
+- [ ] Tarefas
+
 ## Qual a proposta deste projeto - parte 4? 
  
 - Funcionalidades Avançadas 
+
+- [ ] Tarefas
 
 ## :memo: Licença
 
