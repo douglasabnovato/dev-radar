@@ -1,5 +1,5 @@
 <h1 align="center">
-  <img alt="Waze Dev" title="Waze Dev" src="https: // i.imgur.com/Veqm7Gh.png" width="220px" />
+  <img alt="dev-radar" title="Dev Radar" src="https: // i.imgur.com/Veqm7Gh.png" width="220px" />
 </h1>
 
 <p align="center">
@@ -18,7 +18,7 @@
 <br>
 
 <p align="center">
-  <img alt="Waze Dev" src=".github/jobscalc.png" width="100%">
+  <img alt="dev-radar" src=".github/jobscalc.png" width="100%">
 </p>
 
 ### 🚀 Tecnologias
@@ -37,7 +37,7 @@ Esse projeto foi desenvolvido com as seguintes tecnologias:
 
 Construir o app inspirado no waze para localizar desenvolvedores na sua região.  
 
-O WazeDev é uma que segue alguns parâmetros para localizar desenvolvedores e assim conectar profissionais as demandas conforme os projetos. 💰
+O Dev Radar é uma que segue alguns parâmetros para localizar desenvolvedores e assim conectar profissionais as demandas conforme os projetos. 💰
 
 ### 🔖 Layout
 
