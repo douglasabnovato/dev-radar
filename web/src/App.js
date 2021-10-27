@@ -1,8 +1,6 @@
 function App() {
   return (
-    <div className="App">
-       Dev Radar
-    </div>
+    <>Dev Radar!</>
   );
 }
 

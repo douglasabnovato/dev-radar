@@ -61,8 +61,9 @@ Você pode visualizar o layout do projeto através [desse link](https://www.figm
 - vscode
 - extensões vscode: drácula e material icon theme
 
-## Qual a proposta deste projeto - parte 1? Criando a base da aplicação - backend com Nodejs 
+## Qual a proposta deste projeto - parte 1? Criando a base da aplicação 
 
+- [x] backend com Nodejs 
 - [x] regras de negócio 
 - [x] conexão com banco de dados
 - [x] envio de e-mail
@@ -89,11 +90,13 @@ Você pode visualizar o layout do projeto através [desse link](https://www.figm
 - [x] MongoDB Compass
 - [x] DevController: index, show, store, update, destroy
 - [x] SearchController
+- [x] Iniciar o projeto backend: `npm run dev`
  
 ## Qual a proposta deste projeto - parte 2? Construindo a interface web 
 
 - [x] Introdução do cenário de desenvolvimento: abordagem com framework e abordagem com js, html, css
 - [x] Criar projeto: `npx create-react-app web`
+- [x] Iniciar o projeto frontend web: `npm start`
 
 ## Qual a proposta deste projeto - parte 3? 
  
