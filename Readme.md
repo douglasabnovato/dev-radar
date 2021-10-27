@@ -92,7 +92,8 @@ Você pode visualizar o layout do projeto através [desse link](https://www.figm
 - [x] Arquivos de rotas: `routes.js`
 - [x] Biblioteca axios faz chamadas para outras API: `npm install axios`
 - [x] MongoDB Compass
-- [x] 
+- [x] DevController: index, show, store, update, destroy
+
 
 ## Qual a proposta deste projeto - parte 2? 
  
