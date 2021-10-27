@@ -80,6 +80,9 @@ Você pode visualizar o layout do projeto através [desse link](https://www.figm
 - [x] Tipos de parâmetros: route params (request.params: identificar um recurso na alteração ou remoção)
 - [x] Tipos de parâmetros: body (dados para a criação ou alteração de um registro)
 - [x] conectar com o bd - mongodb - não relacional - hospedagem na núvem com mongodb atlas 
+- [x] Instalar o Mongoose: `npm install mongoose`
+
+
 
 ## Qual a proposta deste projeto - parte 2? 
  

@@ -1,6 +1,12 @@
 const express = require('express');
+const mongoose = require("mongoose");
 
 const app = express();
+
+mongoose.connect("mongodb+srv://dbDevRadar:douglas1234@cluster0.yg58x.mongodb.net/dbDevRadar?retryWrites=true&w=majority", { 
+    useNewUrlParser: true, 
+    useUnifiedTopology: true, 
+})
 
 app.use(express.json());
 
