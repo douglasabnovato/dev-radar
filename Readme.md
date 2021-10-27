@@ -82,6 +82,7 @@ Você pode visualizar o layout do projeto através [desse link](https://www.figm
 - [x] conectar com o bd - mongodb - não relacional - hospedagem na núvem com mongodb atlas 
 - [x] Instalar o Mongoose: `npm install mongoose` 
 - [x] Arquivos de rotas: `routes.js`
+- [x] Biblioteca axios faz chamadas para outras API: `npm install axios`
 
 ## Qual a proposta deste projeto - parte 2? 
  
