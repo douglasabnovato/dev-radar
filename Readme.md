@@ -93,8 +93,8 @@ Você pode visualizar o layout do projeto através [desse link](https://www.figm
 - [x] Biblioteca axios faz chamadas para outras API: `npm install axios`
 - [x] MongoDB Compass
 - [x] DevController: index, show, store, update, destroy
-
-
+- [x] SearchController
+ 
 ## Qual a proposta deste projeto - parte 2? 
  
 - Construindo a interface web 
