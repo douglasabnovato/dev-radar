@@ -29,9 +29,17 @@ Esse projeto foi desenvolvido com as seguintes tecnologias:
 - ReactJS
 - React Native
 - Nodejs
+- MongoDB
 - Git/Github
-- VSCode
 - Yarn/Npm 
+
+### 🚀 Ferramentas
+
+- VSCode
+- Git Bash
+- Insomnia
+- MongoDB Atlas
+- MongoDB Compass
 
 ### 💻 Projeto
 
