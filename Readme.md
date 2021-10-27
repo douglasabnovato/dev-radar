@@ -61,9 +61,7 @@ Você pode visualizar o layout do projeto através [desse link](https://www.figm
 - vscode
 - extensões vscode: drácula e material icon theme
 
-## Qual a proposta deste projeto - parte 1? 
- 
-- Criando a base da aplicação - backend com Nodejs 
+## Qual a proposta deste projeto - parte 1? Criando a base da aplicação - backend com Nodejs 
 
 - [x] regras de negócio 
 - [x] conexão com banco de dados
@@ -71,10 +69,7 @@ Você pode visualizar o layout do projeto através [desse link](https://www.figm
 - [x] comunicação com webservices
 - [x] autenticação do usuário 
 - [x] criptografia e segurança
-- [x] Json a estrutura de dados para interligar o backend com o frontend
-
-- Vamos para o projeto backend
-
+- [x] Json a estrutura de dados para interligar o backend com o frontend 
 - [x] `yarn init -y` : na pasta C:\douglasabnovato\rocketseat\omnistack-10\backend
 - [x] `package.json` : arquivo de configuração
 - [x] `yarn add express` : auxilia na criação de rotas
@@ -95,11 +90,10 @@ Você pode visualizar o layout do projeto através [desse link](https://www.figm
 - [x] DevController: index, show, store, update, destroy
 - [x] SearchController
  
-## Qual a proposta deste projeto - parte 2? 
- 
-- Construindo a interface web 
+## Qual a proposta deste projeto - parte 2? Construindo a interface web 
 
-- [ ] Tarefas
+- [x] Introdução do cenário de desenvolvimento: abordagem com framework e abordagem com js, html, css
+- [x] Criar projeto: `npx create-react-app web`
 
 ## Qual a proposta deste projeto - parte 3? 
  
