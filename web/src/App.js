@@ -5,7 +5,7 @@ function App(){
   return(
     <div id="app">
       <aside>
-        <h4>sidebar lateral</h4> 
+        <h4>sidebar </h4> 
       </aside>
 
       <main>
@@ -16,4 +16,4 @@ function App(){
 
 }
 
-export default App;
+export default App; 
