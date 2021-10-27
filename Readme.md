@@ -1,5 +1,5 @@
 <h1 align="center">
-  <img alt="dev-radar" title="Dev Radar" src="https: // i.imgur.com/Veqm7Gh.png" width="220px" />
+  <img alt="Dev Radar" title="Dev Radar" src="https: // i.imgur.com/Veqm7Gh.png" width="220px" />
 </h1>
 
 <p align="center">
@@ -18,7 +18,7 @@
 <br>
 
 <p align="center">
-  <img alt="dev-radar" src=".github/jobscalc.png" width="100%">
+  <img alt="Dev Radarr" src=".github/dev-radar.png" width="100%">
 </p>
 
 ### 🚀 Tecnologias
@@ -49,10 +49,10 @@ O Dev Radar é uma que segue alguns parâmetros para localizar desenvolvedores e
 
 ### 🔖 Layout
 
-Você pode visualizar o layout do projeto através [desse link](https://www.figma.com/file/s4fytPFbDiSkv4GPSfKaLE/Jobs-Planning). 
+Você pode visualizar o layout do projeto através [desse link](https://www.figma.com/file. 
 É necessário ter conta no [Figma](https://figma.com) para acessá-lo.
 
-## configurar ambiente
+## Configurar Ambiente
 
 - nodejs
 - chocolatey 
@@ -91,6 +91,7 @@ Você pode visualizar o layout do projeto através [desse link](https://www.figm
 - [x] Instalar o Mongoose: `npm install mongoose` 
 - [x] Arquivos de rotas: `routes.js`
 - [x] Biblioteca axios faz chamadas para outras API: `npm install axios`
+- [x] MongoDB Compass
 
 ## Qual a proposta deste projeto - parte 2? 
  
