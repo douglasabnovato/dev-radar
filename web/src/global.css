@@ -1,4 +1,4 @@
-@import url('https://fonts.googleapis.com/css2?family=Roboto:wght@400;700&display=swap');
+@import url('https:// .googleapis.com/css2?family=Roboto:wght@400;700&display=swap');
 
 *{
     margin: 0;
@@ -14,4 +14,8 @@ html, body, #root{
 body{
     background: #E5E6F0;
     -webkit-font-smoothing: antialiased;
+}
+
+body, input, button{
+    font-family: Roboto, sans-serif;
 }
