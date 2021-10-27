@@ -1,6 +1,6 @@
 const express = require('express');
 const mongoose = require("mongoose");
-
+const routes = require("./routes")
 const app = express();
 
 mongoose.connect("mongodb+srv://dbDevRadar:douglas1234@cluster0.yg58x.mongodb.net/dbDevRadar?retryWrites=true&w=majority", { 
@@ -9,14 +9,6 @@ mongoose.connect("mongodb+srv://dbDevRadar:douglas1234@cluster0.yg58x.mongodb.ne
 })
 
 app.use(express.json());
-
-app.post("/users", (request, response) => {
-    console.log(request.body)
-
-    let text = 'Hello API REST!';
-    console.log(text);
-
-    return response.json({ message: text });
-});
-
+app.use(routes);
+  
 app.listen(3333); 
