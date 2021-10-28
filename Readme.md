@@ -107,6 +107,8 @@ Você pode visualizar o layout do projeto através [desse link](https://www.figm
 - [x] Axios: `npm install axios` 
 - [x] map para exibir a lista de devs
 - [x] refatoração e estrutura de pastas
+- [x] warning: não está adicionando dev: revisar o web
+- [ ] warning: não está adicionando dev: revisar o backend
 
 ## Qual a proposta deste projeto - parte 3? Desenvolvendo o app mobile 
 
