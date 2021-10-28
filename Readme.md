@@ -102,6 +102,7 @@ Você pode visualizar o layout do projeto através [desse link](https://www.figm
 - [x] Estilização do Sidebar.css
 - [x] Estilização do Main.css
 - [x] Aplicar responsividade: quando aplicar, como aplicar
+- [x] Função de Geolocalização
 
 
 ## Qual a proposta deste projeto - parte 3? Desenvolvendo o app mobile 
