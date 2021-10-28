@@ -8,6 +8,8 @@ import "./Main.css";
 
 function App(){
 
+  const [devs, setDevs] = useState([]);
+
   const [latitude, setLatitude] = useState("");
   const [longitude, setLongitude] = useState("");
   const [github_username, setGithubUsername] = useState(""); 
@@ -29,6 +31,14 @@ function App(){
     ) 
   }, []);
 
+  useEffect(() => { 
+      async function loadDevs(){
+        const response = await api.get("/devs")
+        setDevs(response.data)
+      }
+      loadDevs();
+  }, []);
+
   async function handleAddDev(e){  
     e.prevntDefault(); 
     const response = await api.post("/devs", { 
@@ -36,8 +46,9 @@ function App(){
       techs,
       latitude,
       longitude,
-    }); 
-    console.log(response.data); 
+    });  
+    setGithubUsername("");
+    setTechs("");
   }
 
   return(
@@ -96,54 +107,6 @@ function App(){
 
       <main>
         <ul>
-          <li className="dev-item">
-            <header>
-              <img src="https://avatars.githubusercontent.com/u/14242834?v=4" alt="Douglas A B Novato" />
-              <div className="user-info">
-                <strong>Douglas Novato</strong>
-                <span>Js, ReactJs, NodeJs</span>
-              </div>
-            </header>
-            <p>desenvolvedor frontend web - Javascript | ReactJS</p>
-            <a href="https://github.com/douglasabnovato">Acessar o perfil no Github</a>
-          </li>
-
-          <li className="dev-item">
-            <header>
-              <img src="https://avatars.githubusercontent.com/u/14242834?v=4" alt="Douglas A B Novato" />
-              <div className="user-info">
-                <strong>Douglas Novato</strong>
-                <span>Js, ReactJs, NodeJs</span>
-              </div>
-            </header>
-            <p>desenvolvedor frontend web - Javascript | ReactJS</p>
-            <a href="https://github.com/douglasabnovato">Acessar o perfil no Github</a>
-          </li>
-
-          <li className="dev-item">
-            <header>
-              <img src="https://avatars.githubusercontent.com/u/14242834?v=4" alt="Douglas A B Novato" />
-              <div className="user-info">
-                <strong>Douglas Novato</strong>
-                <span>Js, ReactJs, NodeJs</span>
-              </div>
-            </header>
-            <p>desenvolvedor frontend web - Javascript | ReactJS</p>
-            <a href="https://github.com/douglasabnovato">Acessar o perfil no Github</a>
-          </li>
-
-          <li className="dev-item">
-            <header>
-              <img src="https://avatars.githubusercontent.com/u/14242834?v=4" alt="Douglas A B Novato" />
-              <div className="user-info">
-                <strong>Douglas Novato</strong>
-                <span>Js, ReactJs, NodeJs</span>
-              </div>
-            </header>
-            <p>desenvolvedor frontend web - Javascript | ReactJS</p>
-            <a href="https://github.com/douglasabnovato">Acessar o perfil no Github</a>
-          </li>
-
           <li className="dev-item">
             <header>
               <img src="https://avatars.githubusercontent.com/u/14242834?v=4" alt="Douglas A B Novato" />
