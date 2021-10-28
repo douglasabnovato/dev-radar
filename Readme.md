@@ -97,7 +97,12 @@ Você pode visualizar o layout do projeto através [desse link](https://www.figm
 - [x] Introdução do cenário de desenvolvimento: abordagem com framework e abordagem com js, html, css
 - [x] Criar projeto: `npx create-react-app web`
 - [x] Iniciar o projeto frontend web: `npm start`
-- [x] Criado a estrutura dos elementos 
+- [x] Criado a estrutura dos elementos no App
+- [x] Estilização do global.css
+- [x] Estilização do Sidebar.css
+- [x] Estilização do Main.css
+- [x] Aplicar responsividade: quando aplicar, como aplicar
+
 
 ## Qual a proposta deste projeto - parte 3? Desenvolvendo o app mobile 
 
