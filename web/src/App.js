@@ -107,17 +107,19 @@ function App(){
 
       <main>
         <ul>
-          <li className="dev-item">
-            <header>
-              <img src="https://avatars.githubusercontent.com/u/14242834?v=4" alt="Douglas A B Novato" />
-              <div className="user-info">
-                <strong>Douglas Novato</strong>
-                <span>Js, ReactJs, NodeJs</span>
-              </div>
-            </header>
-            <p>desenvolvedor frontend web - Javascript | ReactJS</p>
-            <a href="https://github.com/douglasabnovato">Acessar o perfil no Github</a>
-          </li>
+          {devs.map(dev => (
+            <li key={dev._id} className="dev-item">
+              <header>
+                <img src={dev.avatar_url} alt={dev.name} />
+                <div className="user-info">
+                  <strong>{dev.name}</strong>
+                  <span>{dev.techs.join(", ")}</span>
+                </div>
+              </header>
+              <p>{dev.bio}</p>
+              <a href={`https://github.com/${dev.github_username}`}>Acessar o perfil no Github</a>
+            </li>
+          ))} 
         </ul>
       </main>
     </div>
