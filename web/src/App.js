@@ -10,42 +10,34 @@ function App(){
 
   const [latitude, setLatitude] = useState("");
   const [longitude, setLongitude] = useState("");
-  const [githubUsername, setGithubUsername] = useState(""); 
+  const [github_username, setGithubUsername] = useState(""); 
   const [techs, setTechs] = useState("");
-  
-
-  useEffect(() => {
-    navigator.geolocation.getCurrentPosition(
-      (position) => {
-
-          const { latitude, longitude } = position.coords;
-
+   
+  useEffect(() => { 
+    navigator.geolocation.getCurrentPosition( 
+      (position) => {  
+          const { latitude, longitude } = position.coords; 
           setLatitude(latitude);
-          setLongitude(longitude);
-
-      },
+          setLongitude(longitude);  
+      }, 
       (error) => {
           console.log(error);
-      },
+      }, 
       {
           timeout: 30000,
-      }
-    );
-  }, [])
+      } 
+    ) 
+  }, []);
 
-  async function handleAddDev(e){
-
-    e.prevntDefault();
-
+  async function handleAddDev(e){  
+    e.prevntDefault(); 
     const response = await api.post("/devs", { 
-      githubUsername,
+      github_username,
       techs,
       latitude,
-      longitude
-    })
-
-    console.log(response.data)
-
+      longitude,
+    }); 
+    console.log(response.data); 
   }
 
   return(
@@ -59,7 +51,7 @@ function App(){
             <input 
               name="github_username" 
               id="github_username"
-              value={githubUsername}  
+              value={github_username}  
               required 
               onChange={e => setGithubUsername(e.target.value)}/>
           </div>
