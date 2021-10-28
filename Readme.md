@@ -103,9 +103,10 @@ Você pode visualizar o layout do projeto através [desse link](https://www.figm
 - [x] Estilização do Main.css
 - [x] Aplicar responsividade: quando aplicar, como aplicar
 - [x] Função de Geolocalização
-- [x] Instalação e configuração de extensão no backend: cors. Objetivo de permitir acessar o backend
+- [x] Instalação e configuração de extensão no backend: `cors`. Objetivo de permitir acessar o backend
 - [x] Axios: `npm install axios` 
-
+- [x] map para exibir a lista de devs
+- [x] refatoração e estrutura de pastas
 
 ## Qual a proposta deste projeto - parte 3? Desenvolvendo o app mobile 
 
