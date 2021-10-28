@@ -39,7 +39,43 @@ function App(){
       </aside>
 
       <main>
-        <h4>devs cadastrados</h4>
+        <ul>
+          <li className="dev-item">
+            <header>
+              <img src="https://avatars.githubusercontent.com/u/14242834?v=4" alt="Douglas A B Novato" />
+              <div className="user-info">
+                <strong>Diego Fernandes</strong>
+                <span>Js, ReactJs, NodeJs</span>
+              </div>
+            </header>
+            <p>desenvolvedor frontend web - Javascript | ReactJS</p>
+            <a href="https://github.com/douglasabnovato">Acessar o perfil no Github</a>
+          </li>
+
+          <li className="dev-item">
+            <header>
+              <img src="https://avatars.githubusercontent.com/u/14242834?v=4" alt="Douglas A B Novato" />
+              <div className="user-info">
+                <strong>Diego Fernandes</strong>
+                <span>Js, ReactJs, NodeJs</span>
+              </div>
+            </header>
+            <p>desenvolvedor frontend web - Javascript | ReactJS</p>
+            <a href="https://github.com/douglasabnovato">Acessar o perfil no Github</a>
+          </li>
+
+          <li className="dev-item">
+            <header>
+              <img src="https://avatars.githubusercontent.com/u/14242834?v=4" alt="Douglas A B Novato" />
+              <div className="user-info">
+                <strong>Diego Fernandes</strong>
+                <span>Js, ReactJs, NodeJs</span>
+              </div>
+            </header>
+            <p>desenvolvedor frontend web - Javascript | ReactJS</p>
+            <a href="https://github.com/douglasabnovato">Acessar o perfil no Github</a>
+          </li>
+        </ul>
       </main>
     </div>
   );
