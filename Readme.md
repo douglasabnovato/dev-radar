@@ -113,6 +113,11 @@ Você pode visualizar o layout do projeto através [desse link](https://www.figm
 ## Qual a proposta deste projeto - parte 3? Desenvolvendo o app mobile 
 
 - [x] Aplicação será construída com react native com expo
+- [x] Instalar expo: `npm install -g expo-cli`
+- [x] Criar o módulo: `expo --template blank init mobile`
+- [x] Iniciar o projeto mobile: `npm start`
+
+
 
 ## Qual a proposta deste projeto - parte 4? Funcionalidades Avançadas 
 
