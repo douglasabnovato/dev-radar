@@ -114,10 +114,9 @@ Você pode visualizar o layout do projeto através [desse link](https://www.figm
 
 - [x] Aplicação será construída com react native com expo
 - [x] Instalar expo: `npm install -g expo-cli`
-- [x] Criar o módulo: `expo --template blank init mobile`
-- [x] Iniciar o projeto mobile: `npm start`
-
-
+- [x] Criar o módulo: `expo init mobile --template blank`
+- [x] Iniciar o projeto mobile: `npm start` 
+- [x] `localhost:19002` e o abrir o qr com o app expo instalado.
 
 ## Qual a proposta deste projeto - parte 4? Funcionalidades Avançadas 
 
