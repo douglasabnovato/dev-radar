@@ -112,7 +112,7 @@ Você pode visualizar o layout do projeto através [desse link](https://www.figm
 
 ## Qual a proposta deste projeto - parte 3? Desenvolvendo o app mobile 
 
-- [ ] Tarefas
+- [x] Aplicação será construída com react native com expo
 
 ## Qual a proposta deste projeto - parte 4? Funcionalidades Avançadas 
 
