@@ -87,7 +87,7 @@ Você pode visualizar o layout do projeto através [desse link](https://www.figm
 - [x] Instalar o Mongoose: `npm install mongoose` 
 - [x] Arquivos de rotas: `routes.js`
 - [x] Biblioteca axios faz chamadas para outras API: `npm install axios`
-- [x] MongoDB Compass
+- [x] MongoDB Compass: SGBD que permite visualizar o bd
 - [x] DevController: index, show, store, update, destroy
 - [x] SearchController
 - [x] Iniciar o projeto backend: `npm run dev`
