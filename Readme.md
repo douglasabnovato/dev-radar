@@ -117,6 +117,7 @@ Você pode visualizar o layout do projeto através [desse link](https://www.figm
 - [x] Criar o módulo: `expo init mobile --template blank`
 - [x] Iniciar o projeto mobile: `npm start` 
 - [x] `localhost:19002` e o abrir o qr com o app expo instalado.
+- [x] alterando a versão do node para corrigir o warning
 
 ## Qual a proposta deste projeto - parte 4? Funcionalidades Avançadas 
 
