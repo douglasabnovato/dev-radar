@@ -122,11 +122,12 @@ Você pode visualizar o layout do projeto através [desse link](https://www.figm
 - [x] [docs expo](https://docs.expo.dev/)
 - [x] MapsView: `expo install react-native-maps`
 - [x] location: `expo install expo-location`
+- [x] WebView: `expo install react-native-webview`
 
 ## Qual a proposta deste projeto - parte 4? Funcionalidades Avançadas 
 
 - [ ] Tarefas 
-
+  
 ## :memo: Licença
 
 Esse projeto está sob a licença MIT. Veja o arquivo [LICENSE](.github/LICENSE.md) para mais detalhes.
