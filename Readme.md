@@ -121,6 +121,7 @@ Você pode visualizar o layout do projeto através [desse link](https://www.figm
 - [x] warnings e errors: [docs!](https://github.com/Rocketseat/expo-common-issues)
 - [x] [docs expo](https://docs.expo.dev/)
 - [x] MapsView: `expo install react-native-maps`
+- [x] location: `expo install expo-location`
 
 ## Qual a proposta deste projeto - parte 4? Funcionalidades Avançadas 
 
