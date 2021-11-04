@@ -3,9 +3,11 @@ import { StyleSheet, Image, View, Text, TextInput, TouchableOpacity } from "reac
 import MapView, { Marker, Callout } from "react-native-maps";
 import { requestPermissionsAsync, getCurrentPositionAsync } from "expo-location";
 import { MaterialIcons } from "@expo/vector-icons";
+import api from "../services/api";
 
 function Main({ navigation }){
 
+    const [devs, setDevs] = useState([]);
     const [currentRegion, setCurrentRegion] = useState(null);
 
     useEffect( () => {
@@ -35,13 +37,35 @@ function Main({ navigation }){
 
     }, []);
 
+    async function loadDevs(){
+        const { latitude, longitude } = currentRegion;
+
+        const response = await api.get("/search", {
+            params: {
+                latitude, 
+                longitude, 
+                techs: "Reactjs"
+            }
+        });
+
+        setDevs(response.data);
+    }
+
+    function handleRegionChanged(){
+        setCurrentRegion(region);
+    }
+
     if(!currentRegion){
         return null;
     }
 
     return (
         <>
-            <MapView initialRegion={currentRegion} style={ styles.map }>
+            <MapView 
+                onRegionChangeComplete={handleRegionChanged} 
+                initialRegion={currentRegion} 
+                style={ styles.map }
+            >
                 <Marker coordinate={{ latitude: -27.211164, longitude: -49.6374491 }}>
                     <Image style={styles.avatar} source={{ uri: "https://avatars.githubusercontent.com/u/14242834?v=4" }}/>
                     <Callout onPress={() => {
