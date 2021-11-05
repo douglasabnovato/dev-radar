@@ -126,7 +126,8 @@ Você pode visualizar o layout do projeto através [desse link](https://www.figm
 
 ## Qual a proposta deste projeto - parte 4? Funcionalidades Avançadas 
 
-- [ ] Tarefas 
+- [x] no backend: Adicionar dependência da socket.io: `npm install socket.io`
+- [x] no backend: Configuração do socket.io
   
 ## :memo: Licença
 
