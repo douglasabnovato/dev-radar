@@ -3,7 +3,9 @@ import { StyleSheet, Image, View, Text, TextInput, TouchableOpacity } from "reac
 import MapView, { Marker, Callout } from "react-native-maps";
 import { requestPermissionsAsync, getCurrentPositionAsync } from "expo-location";
 import { MaterialIcons } from "@expo/vector-icons";
+
 import api from "../services/api";
+import { connect, disconnect } from "../services/socket";
 
 function Main({ navigation }){
 
@@ -38,6 +40,18 @@ function Main({ navigation }){
 
     }, []);
 
+    function setupWebsocket(){
+
+        const { latitude, longitude } = currentRegion;
+        
+        connect(
+            latitude,
+            longitude,
+            techs,
+        );
+
+    }
+
     async function loadDevs(){
         const { latitude, longitude } = currentRegion;
 
@@ -45,11 +59,12 @@ function Main({ navigation }){
             params: {
                 latitude, 
                 longitude, 
-                techs 
+                techs, 
             }
         });
 
         setDevs(response.data.devs);
+        setupWebsocket();
     }
 
     function handleRegionChanged(){

@@ -128,7 +128,8 @@ Você pode visualizar o layout do projeto através [desse link](https://www.figm
 
 - [x] no backend: Adicionar dependência da socket.io: `npm install socket.io`
 - [x] no backend: Configuração do socket.io
-  
+- [x] no mobile: Adicionar dependência da socketio: `npm install socket.io-client`  
+- [x] no mobile: Configuração do socket.io na página main, na função loadDevs
 ## :memo: Licença
 
 Esse projeto está sob a licença MIT. Veja o arquivo [LICENSE](.github/LICENSE.md) para mais detalhes.
