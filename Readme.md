@@ -1,5 +1,5 @@
 <h1 align="center">
-  <img alt="Dev Radar" title="Dev Radar" src="https: // i.imgur.com/Veqm7Gh.png" width="220px" />
+  <img alt="Dev Radar" title="Dev Radar" src="https://i.imgur.com/Veqm7Gh.png" width="220px" />
 </h1>
 
 <p align="center">
@@ -11,14 +11,13 @@
 
 <p align="center">
  <img src="https://img.shields.io/static/v1?label=PRs&message=welcome&color=49AA26&labelColor=000000" alt="PRs welcome!" />
-
   <img alt="License" src="https://img.shields.io/static/v1?label=license&message=MIT&color=49AA26&labelColor=000000">
 </p>
 
 <br>
 
 <p align="center">
-  <img alt="Dev Radarr" src=".github/dev-radar.png" width="100%">
+  <img alt="Dev Radarr" src="./.github/dev-radar.png" width="100%">
 </p>
 
 ### 🚀 Tecnologias
@@ -44,12 +43,11 @@ Esse projeto foi desenvolvido com as seguintes tecnologias:
 ### 💻 Projeto
 
 Construir o app inspirado no waze para localizar desenvolvedores na sua região.  
-
 O Dev Radar é uma que segue alguns parâmetros para localizar desenvolvedores e assim conectar profissionais as demandas conforme os projetos. 💰
 
 ### 🔖 Layout
 
-Você pode visualizar o layout do projeto através [desse link](https://www.figma.com/file. 
+Você pode visualizar o layout do projeto através [desse link](https://www.figma.com/file).
 É necessário ter conta no [Figma](https://figma.com) para acessá-lo.
 
 ## Configurar Ambiente
@@ -130,6 +128,7 @@ Você pode visualizar o layout do projeto através [desse link](https://www.figm
 - [x] no backend: Configuração do socket.io
 - [x] no mobile: Adicionar dependência da socketio: `npm install socket.io-client`  
 - [x] no mobile: Configuração do socket.io na página main, na função loadDevs
+
 ## :memo: Licença
 
 Esse projeto está sob a licença MIT. Veja o arquivo [LICENSE](.github/LICENSE.md) para mais detalhes.
