@@ -1,10 +1,15 @@
+<h4 align="center">
+  🚀 Dev Radar
+</h4>
+
+<p align="center">
+  <img alt="Frontend" src="./devradar.png" width="100%">
+</p>
+
 <h1 align="center">
     <img alt="DevRadar" title="#delicinha" src="./devradar.svg" width="250px" />
 </h1>
 
-<h4 align="center">
-  🚀 Semana OmniStack 10.0
-</h4>
 <p align="center">
   <img alt="GitHub language count" src="https://img.shields.io/github/languages/count/Rocketseat/semana-omnistack-10">
 
@@ -29,11 +34,10 @@
   <a href="#memo-licença">Licença</a>
 </p>
 
-<br>
+### 💻 Projeto
 
-<p align="center">
-  <img alt="Frontend" src="./devradar.png" width="100%">
-</p>
+Construir o app inspirado no waze para localizar desenvolvedores na sua região.  
+O Dev Radar é uma que segue alguns parâmetros para localizar desenvolvedores e assim conectar profissionais as demandas conforme os projetos. 💰
 
 ## :rocket: Tecnologias
 
@@ -54,11 +58,6 @@ Esse projeto foi desenvolvido com as seguintes tecnologias:
 - Insomnia
 - MongoDB Atlas
 - MongoDB Compass
-
-### 💻 Projeto
-
-Construir o app inspirado no waze para localizar desenvolvedores na sua região.  
-O Dev Radar é uma que segue alguns parâmetros para localizar desenvolvedores e assim conectar profissionais as demandas conforme os projetos. 💰
 
 ### 🔖 Layout
 
@@ -151,3 +150,5 @@ Esse projeto está sob a licença MIT. Veja o arquivo [LICENSE](.github/LICENSE.
 ---
 
 Feito com ♥ by [douglasabnovato!](https://www.linkedin.com/in/douglasabnovato/) :wave: 
+
+Fonte do projeto: [Diego Fernandes - Rocketseat - Semana Omnistack 10.0 - dev radar](https://www.rocketseat.com.br/)
