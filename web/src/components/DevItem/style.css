@@ -21,7 +21,7 @@ li.dev-item header .user-info{
     margin-left: 10px;
 }
 
-.user-info strong{
+.user-info h3{
     display: block;
     font-size: 16px;
     color: #333;
@@ -29,7 +29,7 @@ li.dev-item header .user-info{
 
 .user-info span{
     font-size: 13px;
-    color: #999;
+    color: #666;
     margin-top: 2px;
 }
 
@@ -41,11 +41,30 @@ li.dev-item p{
 }
 
 li.dev-item a {
-    color: #8e4dff;
+    color: #6a2fd1;
     font-size: 14px;
     text-decoration: none;
 }
 
 li.dev-item a:hover{
     color: #5a2ea6;
+}
+
+li.dev-item .dev-actions{
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-top: 10px;
+}
+
+li.dev-item .remove{
+    border: 0;
+    background: none;
+    color: #a4161a;
+    font-size: 13px;
+    cursor: pointer;
+}
+
+li.dev-item .item-error{
+    color: #a4161a;
 }

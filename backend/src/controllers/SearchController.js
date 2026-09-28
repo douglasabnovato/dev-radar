@@ -1,28 +1,26 @@
-const Dev = require("../models/Dev")
-const parseStringAsArray = require("../utils/parseStringAsArray"); 
+/*
+ * SearchController.js · busca devs por tecnologia num raio configurável (padrão 10 km).
+ */
+const schemas = require('../validation/schemas');
+const { parse } = require('../lib/errors');
+const parseStringAsArray = require('../utils/parseStringAsArray');
 
-module.exports = {
-
-    async index(request, response){
-
-        const { latitude, longitude, techs } = request.query;
-        const techsArray = parseStringAsArray(techs);
-
-        const devs = await Dev.find({
-            techs: {
-                $in: techsArray,
-            },
-            location: {
-                $near: {
-                    $geometry: {
-                        type: "Point",
-                        coordinates: [longitude, latitude] 
-                    }, 
-                    $maxDistance: 10000,
-                },
-            },
-        });
-
-        return response.json({ devs });
-    } 
+/* Cria o controller com o repositório e o raio injetados. */
+function createSearchController({ repository, radiusMeters }) {
+    return {
+        /* GET /search?latitude&longitude&techs */
+        async index(request, response) {
+            const { latitude, longitude, techs } = parse(schemas.search, request.query);
+            const devs = await repository.searchNear({
+                latitude,
+                longitude,
+                techs: parseStringAsArray(techs),
+                maxDistance: radiusMeters,
+            });
+            return response.json({ devs });
+        },
+    };
 }
+
+module.exports = { createSearchController };
+/* fim de SearchController.js */

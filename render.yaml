@@ -1,0 +1,34 @@
+# Blueprint do Render com dois serviços gratuitos:
+# - dev-radar-api: API Express + Socket.IO (pasta backend/), banco no MongoDB Atlas (MONGODB_URI pedida no painel);
+# - dev-radar: front-end web (pasta web/) como site estático, apontando para a API por REACT_APP_API_URL.
+# Se o Render der outro endereço para a API, ajuste REACT_APP_API_URL no painel e faça um novo deploy do front.
+services:
+  - type: web
+    name: dev-radar-api
+    runtime: node
+    plan: free
+    branch: master
+    rootDir: backend
+    autoDeployTrigger: commit
+    buildCommand: npm ci --omit=dev
+    startCommand: npm start
+    healthCheckPath: /health
+    envVars:
+      - key: NODE_VERSION
+        value: "22"
+      - key: MONGODB_URI
+        sync: false
+      - key: SEARCH_RADIUS_METERS
+        value: "10000"
+  - type: web
+    name: dev-radar
+    runtime: static
+    branch: master
+    buildCommand: cd web && npm ci && npm run build
+    staticPublishPath: ./web/build
+    envVars:
+      - key: NODE_VERSION
+        value: "22"
+      - key: REACT_APP_API_URL
+        value: https://dev-radar-api.onrender.com
+# fim de render.yaml

@@ -37,7 +37,61 @@
 ### 💻 Projeto
 
 Construir o app inspirado no waze para localizar desenvolvedores na sua região.  
-O Dev Radar é uma que segue alguns parâmetros para localizar desenvolvedores e assim conectar profissionais as demandas conforme os projetos. 💰
+O Dev Radar é uma aplicação que segue alguns parâmetros para localizar desenvolvedores e assim conectar profissionais as demandas conforme os projetos. 💰
+
+## ▶️ Como executar
+
+Pré-requisitos: Node.js 20 e um cluster gratuito no MongoDB Atlas.
+
+```bash
+# API (porta 3333)
+cd backend
+cp .env.example .env      # preencha MONGODB_URI
+npm install
+npm run dev               # ou npm start · npm test (8 testes)
+
+# Web (porta 3000)
+cd ../web
+npm install
+npm start                 # REACT_APP_API_URL aponta para a API (padrão http://localhost:3333)
+
+# Mobile
+cd ../mobile
+npm install
+# em app.json, troque expo.extra.apiUrl pelo IP da sua máquina na rede (ex.: http://192.168.0.10:3333)
+npx expo start
+```
+
+### Contrato da API
+
+| Método | Rota | Descrição |
+|---|---|---|
+| GET | `/devs` | Lista os devs |
+| POST | `/devs` | Cadastra pelo GitHub (`github_username`, `techs`, `latitude`, `longitude`) |
+| PUT | `/devs/:github_username` | Atualiza tecnologias e/ou posição |
+| DELETE | `/devs/:github_username` | Remove do radar |
+| GET | `/search?latitude&longitude&techs` | Devs com as tecnologias num raio de 10 km |
+
+Tempo real (Socket.IO): conecte com `latitude`, `longitude` e `techs` na query e ouça `new-dev`.
+
+### ☁️ Hospedagem gratuita
+
+**Demonstração:** https://dev-radar.onrender.com (web) · https://dev-radar-api.onrender.com/health (API)
+
+API no Render (web service free, com WebSocket) + MongoDB Atlas M0; web no Render como site estático com `REACT_APP_API_URL`. Os dois sobem juntos pelo `render.yaml` (branch `master`). A API dorme após 15 min sem acesso (~1 min para acordar). O app mobile (Expo SDK 43) fica fora do deploy até a atualização do SDK. Passo a passo completo: [docs/DEPLOY.md](docs/DEPLOY.md).
+
+## 📊 Estado do MVP & Documentação
+
+| Documento | Conteúdo |
+|---|---|
+| [docs/ANALISE.md](./docs/ANALISE.md) | Requisitos, diagnóstico, rubrica e notas |
+| [docs/ARQUITETURA.md](./docs/ARQUITETURA.md) | C4, modelo geoespacial, contrato e ADRs |
+| [docs/PLANO-DE-ACAO.md](./docs/PLANO-DE-ACAO.md) | Tarefas priorizadas por MoSCoW |
+
+| Momento | Nota MVP | Situação |
+|---|---|---|
+| Antes (27/09/2026) | 3,10 | Reprovado — credenciais do banco no código, tempo real quebrado e app móvel sem compilar |
+| Depois (27/09/2026) | 7,68 | Aprovado — falta trocar a senha do Atlas e validar o app num aparelho |
 
 ## :rocket: Tecnologias
 

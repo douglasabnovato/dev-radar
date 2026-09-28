@@ -1,14 +1,8 @@
 {
   "expo": {
-    "name": "mobile",
-    "slug": "mobile",
-    "privacy":"public",
-    "sdkVersion":"36.0.0",
-    "plataforms":[ 
-      "ios",
-      "android",
-      "web"
-    ],
+    "name": "DevRadar",
+    "slug": "devradar",
+    "privacy": "public",
     "version": "1.0.0",
     "orientation": "portrait",
     "icon": "./assets/icon.png",
@@ -34,6 +28,13 @@
     },
     "web": {
       "favicon": "./assets/favicon.png"
+    },
+    "platforms": [
+      "ios",
+      "android"
+    ],
+    "extra": {
+      "apiUrl": "http://192.168.0.10:3333"
     }
   }
 }

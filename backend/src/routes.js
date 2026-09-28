@@ -1,13 +1,22 @@
-const { Router } = require("express");
+/*
+ * routes.js · rotas REST do DevRadar.
+ */
+const { Router } = require('express');
 
-const DevController = require("./controllers/DevController");
-const SearchController = require("./controllers/SearchController");
+/* Cria o roteador com os controllers injetados; erros assíncronos seguem para o tratador. */
+function createRoutes({ devController, searchController }) {
+    const routes = Router();
+    const wrap = (handler) => (request, response, next) => Promise.resolve(handler(request, response)).catch(next);
 
-const routes = Router();
+    routes.get('/health', (request, response) => response.json({ status: 'ok' }));
+    routes.get('/devs', wrap(devController.index));
+    routes.post('/devs', wrap(devController.store));
+    routes.put('/devs/:github_username', wrap(devController.update));
+    routes.delete('/devs/:github_username', wrap(devController.destroy));
+    routes.get('/search', wrap(searchController.index));
 
-routes.get("/devs", DevController.index);
-routes.post("/devs", DevController.store);
+    return routes;
+}
 
-routes.get("/search", SearchController.index);
-
-module.exports = routes;
+module.exports = { createRoutes };
+/* fim de routes.js */

@@ -1,9 +1,8 @@
-@import url('https:// .googleapis.com/css2?family=Roboto:wght@400;700&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Roboto:wght@400;700&display=swap');
 
 *{
     margin: 0;
     padding: 0;
-    outline: 0;
     box-sizing: border-box;
 }
 
@@ -18,4 +17,40 @@ body{
 
 body, input, button{
     font-family: Roboto, sans-serif;
+}
+
+/* Foco visível e texto só para leitores de tela */
+:focus-visible{
+    outline: 3px solid #7d40e7;
+    outline-offset: 2px;
+}
+
+.sr-only{
+    position: absolute;
+    width: 1px;
+    height: 1px;
+    overflow: hidden;
+    clip: rect(0, 0, 0, 0);
+    white-space: nowrap;
+}
+
+.state{
+    background: #fff;
+    border-radius: 2px;
+    padding: 20px;
+    color: #444;
+}
+
+.state-error{
+    color: #a4161a;
+}
+
+.state-error button{
+    margin-top: 10px;
+    border: 0;
+    background: #7d40e7;
+    color: #fff;
+    padding: 8px 14px;
+    border-radius: 2px;
+    cursor: pointer;
 }

@@ -1,23 +1,36 @@
-const express = require('express');
-const mongoose = require("mongoose");
-const cors = require("cors");
-const http = require("http");
+/*
+ * index.js · ponto de entrada: conecta ao MongoDB (URI do ambiente), sobe HTTP + WebSocket.
+ */
+const http = require('http');
+const mongoose = require('mongoose');
+const env = require('./config/env');
+const { createApp } = require('./app');
+const { setupWebsocket } = require('./websocket');
+const repository = require('./repositories/mongoDevRepository');
+const { createGithubService } = require('./services/githubService');
 
-const routes = require("./routes");
-const { setupWebsocket } = require("./websocket");
+/* Valida a configuração, conecta e começa a ouvir. */
+async function main() {
+    if (!env.mongoUri) {
+        throw new Error('Defina MONGODB_URI no arquivo .env (veja .env.example).');
+    }
+    await mongoose.connect(env.mongoUri);
 
-const app = express();
-const server = http.Server(app);
+    let notifier = { notifyNewDev: () => {} };
+    const app = createApp({
+        repository,
+        github: createGithubService(),
+        notifier: { notifyNewDev: (...args) => notifier.notifyNewDev(...args) },
+        corsOrigin: env.corsOrigin,
+        radiusMeters: env.searchRadiusMeters,
+    });
+    const server = http.createServer(app);
+    notifier = setupWebsocket(server, { corsOrigin: env.corsOrigin });
+    server.listen(env.port, () => console.log(`DevRadar API em http://localhost:${env.port}`));
+}
 
-setupWebsocket(server); 
-
-mongoose.connect("mongodb+srv://dbDevRadar:douglas1234@cluster0.yg58x.mongodb.net/dbDevRadar?retryWrites=true&w=majority", { 
-    useNewUrlParser: true, 
-    useUnifiedTopology: true, 
+main().catch((error) => {
+    console.error('Falha ao iniciar:', error.message);
+    process.exit(1);
 });
-
-app.use(cors()); 
-app.use(express.json());
-app.use(routes);
-  
-server.listen(3333); 
+/* fim de index.js */

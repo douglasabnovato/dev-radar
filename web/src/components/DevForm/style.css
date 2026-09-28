@@ -18,7 +18,7 @@ aside form .input-group .input-block{
 }
 
 aside form .input-block label{
-    color: #ACACAC;
+    color: #5f5f5f;
     font-size: 14px;
     font-weight: bold;
     display: block;
@@ -49,4 +49,30 @@ aside form button[type=submit]{
 
 aside form button[type=submit]:hover{
     background: #6931ca;
+}
+
+aside form small,
+aside form .form-hint{
+    display: block;
+    color: #5f5f5f;
+    font-size: 12px;
+    margin-top: 6px;
+}
+
+aside form .form-feedback{
+    margin-top: 16px;
+    font-size: 14px;
+}
+
+aside form .form-feedback.error{
+    color: #a4161a;
+}
+
+aside form .form-feedback.success{
+    color: #1b6b3a;
+}
+
+aside form button[type=submit]:disabled{
+    opacity: 0.7;
+    cursor: wait;
 }

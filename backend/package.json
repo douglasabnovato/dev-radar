@@ -1,22 +1,30 @@
 {
   "name": "backend",
   "version": "1.0.0",
-  "main": "index.js",
+  "main": "src/index.js",
   "license": "MIT",
   "scripts": {
-    "dev": "nodemon src/index.js"
+    "start": "node src/index.js",
+    "dev": "nodemon src/index.js",
+    "test": "node --test"
   },
   "dependencies": {
-    "axios": "^0.24.0",
     "cors": "^2.8.5",
+    "dotenv": "^16.6.1",
     "express": "^4.17.1",
+    "helmet": "^8.3.0",
     "mongoose": "^6.0.12",
-    "socket.io": "^4.3.1"
+    "socket.io": "^4.3.1",
+    "zod": "^3.25.76"
   },
   "devDependencies": {
-    "nodemon": "^2.0.14"
+    "nodemon": "^2.0.14",
+    "supertest": "^7.3.0"
   },
   "keywords": [],
   "author": "",
-  "description": ""
+  "description": "API do DevRadar: cadastro de devs pelo GitHub e busca por tecnologia num raio de 10 km, com avisos em tempo real.",
+  "engines": {
+    "node": ">=20"
+  }
 }
