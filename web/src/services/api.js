@@ -1,10 +1,10 @@
 /*
- * api.js · cliente HTTP da API do DevRadar; a URL vem de REACT_APP_API_URL.
+ * api.js · cliente HTTP da API do DevRadar; a URL vem de VITE_API_URL.
  */
 import axios from "axios";
 
 const api = axios.create({
-  baseURL: process.env.REACT_APP_API_URL || "http://localhost:3333",
+  baseURL: import.meta.env.VITE_API_URL || "http://localhost:3333",
   timeout: 10000,
 });
 

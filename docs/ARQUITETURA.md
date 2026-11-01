@@ -14,7 +14,7 @@ flowchart LR
 | Contêiner | Pasta | Tecnologia | Hospedagem gratuita |
 |---|---|---|---|
 | API + WebSocket | `backend/` | Node 20, Express 4, Socket.IO 4, Mongoose 6, zod | Render (web service free; suporta WebSocket) |
-| Web | `web/` | React 18, CRA 5 | Vercel ou GitHub Pages |
+| Web | `web/` | React 18, Vite 8 | Vercel ou GitHub Pages |
 | Mobile | `mobile/` | Expo, React Native, react-native-maps | Expo Go (desenvolvimento) |
 | Banco | — | MongoDB Atlas M0 (512 MB grátis) | Atlas |
 
