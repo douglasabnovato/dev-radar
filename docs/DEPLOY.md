@@ -27,7 +27,7 @@ Publicar uma API Express + Socket.IO com MongoDB e um front React que usa a geol
 
 | Mudança | Arquivo | Por quê |
 |---|---|---|
-| Blueprint com API e web (branch `master`) | `render.yaml` | Os dois serviços versionados e ligados por `REACT_APP_API_URL` |
+| Blueprint com API e web (branch `master`) | `render.yaml` | Os dois serviços versionados e ligados por `VITE_API_URL` |
 | Dependências da API atualizadas dentro das mesmas versões maiores | `backend/package-lock.json` | `npm audit` apontava 13 pacotes (2 críticos em `mongoose` e `socket.io-parser`); `npm audit fix` sem mudança de versão maior zerou tudo |
 | `package-lock.json` do web regenerado | `web/package-lock.json` | Estava fora de sincronia e o `npm ci` do deploy falhava |
 | Seção de hospedagem com links | `Readme.md` | Endereços, limitações e o status do mobile |
@@ -50,7 +50,7 @@ Publicar uma API Express + Socket.IO com MongoDB e um front React que usa a geol
 1. `cd /c/ambiente-projeto/ser-mvp/dev-radar/backend`
 2. Criar `.env` a partir do `.env.example` com a URI nova.
 3. `npm ci && npm test && npm start` (deixe rodando)
-4. Em outro terminal: `cd ../web && npm ci && npm test -- --watchAll=false && npm start`
+4. Em outro terminal: `cd ../web && npm ci && npm test && npm start`
 5. Cadastrar um dev pelo usuário do GitHub e ver o card na lista.
 
 ### Etapa 3 · Subir para o GitHub (branch `master`)
@@ -68,7 +68,7 @@ Publicar uma API Express + Socket.IO com MongoDB e um front React que usa a geol
 2. **New → Blueprint** e escolher `douglasabnovato/dev-radar`.
 3. O Render pede `MONGODB_URI`: colar a URI da Etapa 1.
 4. **Apply** e acompanhar os **Logs** da API até aparecer `DevRadar API em http://localhost:10000`.
-5. Se o endereço da API não for `https://dev-radar-api.onrender.com`, abrir o serviço `dev-radar` → **Environment**, corrigir `REACT_APP_API_URL` e fazer **Manual Deploy → Deploy latest commit**.
+5. Se o endereço da API não for `https://dev-radar-api.onrender.com`, abrir o serviço `dev-radar` → **Environment**, corrigir `VITE_API_URL` e fazer **Manual Deploy → Deploy latest commit**.
 
 ### Etapa 5 · Conferir no ar
 

@@ -6,16 +6,16 @@ import { render, screen, fireEvent } from "@testing-library/react";
 import App from "./App";
 import api from "./services/api";
 
-jest.mock("./services/api", () => {
-  const actual = jest.requireActual("./services/api");
-  return { __esModule: true, ...actual, default: { get: jest.fn(), post: jest.fn(), delete: jest.fn() } };
+vi.mock("./services/api", async () => {
+  const actual = await vi.importActual("./services/api");
+  return { __esModule: true, ...actual, default: { get: vi.fn(), post: vi.fn(), delete: vi.fn() } };
 });
 
 const DEV = { _id: "1", name: "Ana", github_username: "ana", avatar_url: "a.png", bio: "", techs: ["react"] };
 
 describe("App", () => {
   beforeEach(() => {
-    jest.clearAllMocks();
+    vi.clearAllMocks();
     global.navigator.geolocation = { getCurrentPosition: (ok) => ok({ coords: { latitude: -21.76, longitude: -43.35 } }) };
   });
 

@@ -41,6 +41,9 @@
 > Proposta de 01/11/2026, escrita a partir do código e das dependências. Ajuste com a sua experiência.
 
 - Integrar API, web React e app Expo.
+
+App móvel: Expo 43, React Native 0.64. O CI instala com `legacy-peer-deps` e roda os testes; não empacota o app.
+
 - Buscar registros por localização, usando Mongoose e mapas no celular.
 - Atualizar telas em tempo real com Socket.IO.
 - Validar entradas da API com Zod.
@@ -64,7 +67,7 @@ npm run dev               # ou npm start · npm test (8 testes)
 # Web (porta 3000)
 cd ../web
 npm install
-npm start                 # REACT_APP_API_URL aponta para a API (padrão http://localhost:3333)
+npm start                 # VITE_API_URL aponta para a API (padrão http://localhost:3333)
 
 # Mobile
 cd ../mobile
@@ -89,7 +92,7 @@ Tempo real (Socket.IO): conecte com `latitude`, `longitude` e `techs` na query e
 
 **Demonstração:** Fora do ar desde a conferência de 31/10/2026; para ver o projeto, rode localmente (seção "Como executar").
 
-API no Render (web service free, com WebSocket) + MongoDB Atlas M0; web no Render como site estático com `REACT_APP_API_URL`. Os dois sobem juntos pelo `render.yaml` (branch `master`). A API dorme após 15 min sem acesso (~1 min para acordar). O app mobile (Expo SDK 43) fica fora do deploy até a atualização do SDK. Passo a passo completo: [docs/DEPLOY.md](docs/DEPLOY.md).
+API no Render (web service free, com WebSocket) + MongoDB Atlas M0; web no Render como site estático com `VITE_API_URL`. Os dois sobem juntos pelo `render.yaml` (branch `master`). A API dorme após 15 min sem acesso (~1 min para acordar). O app mobile (Expo SDK 43) fica fora do deploy até a atualização do SDK. Passo a passo completo: [docs/DEPLOY.md](docs/DEPLOY.md).
 
 ## 📊 Estado do MVP & Documentação
 
