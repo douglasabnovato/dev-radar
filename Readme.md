@@ -36,6 +36,15 @@
   <a href="#memo-licença">Licença</a>
 </p>
 
+## 🧠 O que aprendi
+
+> Proposta de 01/11/2026, escrita a partir do código e das dependências. Ajuste com a sua experiência.
+
+- Integrar API, web React e app Expo.
+- Buscar registros por localização, usando Mongoose e mapas no celular.
+- Atualizar telas em tempo real com Socket.IO.
+- Validar entradas da API com Zod.
+
 ### 💻 Projeto
 
 Construir o app inspirado no waze para localizar desenvolvedores na sua região.  
