@@ -1,4 +1,4 @@
-> **Projeto de estudo.** Estado conferido em 30/10/2026: 2 endereço(s) citado(s) abaixo não responde(m). Detalhes em [docs/AVALIACAO.md](docs/AVALIACAO.md) e próximos passos em [docs/PLANO-ESTRATEGICO.md](docs/PLANO-ESTRATEGICO.md).
+> **Projeto de estudo.** Estado conferido em 31/10/2026: os endereços que seguem fora do ar foram retirados deste README. Detalhes em [docs/AVALIACAO.md](docs/AVALIACAO.md) e próximos passos em [docs/PLANO-ESTRATEGICO.md](docs/PLANO-ESTRATEGICO.md).
 
 <h4 align="center">
   🚀 Dev Radar
@@ -78,7 +78,7 @@ Tempo real (Socket.IO): conecte com `latitude`, `longitude` e `techs` na query e
 
 ### ☁️ Hospedagem gratuita
 
-**Demonstração:** https://dev-radar.onrender.com (web) · https://dev-radar-api.onrender.com/health (API)
+**Demonstração:** Fora do ar desde a conferência de 31/10/2026; para ver o projeto, rode localmente (seção "Como executar").
 
 API no Render (web service free, com WebSocket) + MongoDB Atlas M0; web no Render como site estático com `REACT_APP_API_URL`. Os dois sobem juntos pelo `render.yaml` (branch `master`). A API dorme após 15 min sem acesso (~1 min para acordar). O app mobile (Expo SDK 43) fica fora do deploy até a atualização do SDK. Passo a passo completo: [docs/DEPLOY.md](docs/DEPLOY.md).
 
