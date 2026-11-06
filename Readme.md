@@ -107,6 +107,28 @@ API no Render (web service free, com WebSocket) + MongoDB Atlas M0; web no Rende
 | Antes (27/09/2026) | 3,10 | Reprovado — credenciais do banco no código, tempo real quebrado e app móvel sem compilar |
 | Depois (27/09/2026) | 7,68 | Aprovado — falta trocar a senha do Atlas e validar o app num aparelho |
 
+## Estado e próximos passos (ciclo de 03/11/2026)
+
+Projeto de estudo (N1): 7 de 10 critérios aplicáveis atendidos. Ainda não finalizado.
+
+**O que foi feito**
+- Web migrada do Create React App para Vite e app móvel incluído no CI (#48).
+- `docs/MVP.md` criado com os 12 critérios (#57).
+- Dependências da API e do app atualizadas pelo Dependabot, inclusive `zod` 4 (#50 a #56).
+- Neste ciclo: CI também nos PRs para `developer/**`, `axios` 1.x no app, aviso claro quando a cota do GitHub acaba e cache `.expo` fora do Git (#60).
+
+**O que queremos fazer**
+- #61 Decidir a publicação no Render (responsável). O endereço `dev-radar.onrender.com` respondeu 404 em 06/11/2026, por isso não há link aqui.
+- #62 Proteger a `master` com PR e CI obrigatórios (responsável).
+- #63 Migrar o app móvel para um Expo atual e zerar alertas altos.
+- #64 Percorrer o cadastro e a busca na tela.
+- #65 Token opcional do GitHub para subir a cota da API.
+- #66 Mostrar a distância de cada dev na busca.
+
+**Onde está a documentação**
+- Estado e critérios: [docs/MVP.md](docs/MVP.md)
+- Plano, pesquisa e backlog: [docs/PLANO-DE-ACAO.md](docs/PLANO-DE-ACAO.md) (seção "Ciclo de 03/11/2026")
+
 ## :rocket: Tecnologias
 
 Esse projeto foi desenvolvido com as seguintes tecnologias:
