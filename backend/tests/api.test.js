@@ -133,4 +133,15 @@ test('serviço do GitHub usa HTTPS e traduz 404 e falha de rede', async () => {
     const offline = createGithubService(async () => { throw new TypeError('fetch failed'); });
     await assert.rejects(offline.getUser('x'), { status: 503 });
 });
+
+test('serviço do GitHub avisa quando a cota de consultas acaba', async () => {
+    const headers = (h) => ({ get: (k) => h[k] ?? null });
+    const reset = String(Math.floor(Date.now() / 1000) + 600);
+    const limited = createGithubService(async () => ({ ok: false, status: 403, headers: headers({ 'x-ratelimit-remaining': '0', 'x-ratelimit-reset': reset }) }));
+    await assert.rejects(limited.getUser('x'), (err) => err.status === 429 && /em cerca de 10 min/.test(err.message));
+    const tooMany = createGithubService(async () => ({ ok: false, status: 429, headers: headers({}) }));
+    await assert.rejects(tooMany.getUser('x'), (err) => err.status === 429 && /mais tarde/.test(err.message));
+    const forbidden = createGithubService(async () => ({ ok: false, status: 403, headers: headers({ 'x-ratelimit-remaining': '12' }) }));
+    await assert.rejects(forbidden.getUser('x'), { status: 503 });
+});
 /* fim de api.test.js */
