@@ -1,10 +1,41 @@
 # MVP — dev-radar
 
-> Revisto em 06/11/2026 (ciclo de 03/11/2026). Nível: **Estudo (N1)**. Os critérios 5 e 7 não se aplicam ao N1 e saem da conta. Testado no Windows, com Node 24, no clone da `feature/2026-11-06`. Não houve teste com pessoas nem em aparelho real.
+> Revisto em 09/11/2026 (ciclo de 07/11/2026). Nível: **Estudo (N1)**. Os critérios 5 e 7 não se aplicam ao N1 e saem da conta. Testado no Windows, com Node 24, no clone da `feature/2026-11-07`. Não houve teste com pessoas nem em aparelho real.
 
-**Finalizado: não.** Faltam o critério 3 (fluxo na tela, #64) e o 9 (alertas do app móvel, #63). O critério 10 depende do responsável (#62).
+**Resumo:** 9 de 10 aplicáveis atendidos
 
-## 1. Critérios: 7 de 10 aplicáveis atendidos
+**Finalizado:** sim — o único critério aplicável que falta (10) depende do responsável e tem a issue #62 com o rótulo `depende-do-responsavel`.
+
+| # | Critério | Como verificar | Situação | Evidência e data |
+|---|---|---|---|---|
+| 1 | Problema e público claros | Dá para explicar em uma frase | Atende: quem procura devs por tecnologia os encontra no mapa. | README, 09/11/2026 |
+| 2 | Hipótese a validar | Existe uma aposta escrita, com meta | Atende: seção "Hipótese"; sem validação com pessoas. | Seção "Hipótese", 09/11/2026 |
+| 3 | Fluxo principal completo | Uma pessoa conclui sem ajuda | Atende: no navegador, o formulário recebe a posição do navegador, cadastra o dev, mostra o cartão, recusa usuário inexistente com a mensagem da API e remove o dev com confirmação. A busca por tecnologia num raio de 10 km, que o app faz, acha o dev perto e não acha a 130 km. A tela do app não foi aberta (sem aparelho). | `npm run test:e2e` em `web` (Playwright 1.65, Chromium local, API `npm run demo` em memória com perfil do GitHub simulado, dados de demonstração criados pelo teste): 1 passed, 09/11/2026; job `e2e` no CI |
+| 4 | Escopo enxuto | O que não entra está registrado | Atende: seção "Fora do MVP". | 09/11/2026 |
+| 5 | Medição de uso | A métrica principal é coletada | Não se aplica (N1). | Decisão 2 do processo |
+| 6 | Falhas tratadas | Erro, vazio e carregamento têm resposta clara | Atende: sem API, a web mostra o erro e "Tentar novamente"; sem localização, pede latitude e longitude; usuário inexistente e cota do GitHub com mensagem clara. | `npm test` em `web` (3 passed) e `backend` (9 pass); `fluxo.e2e.js`, 09/11/2026 |
+| 7 | Desempenho aceitável | LCP de até 2,5 s no celular | Não se aplica (N1). `dev-radar.onrender.com` respondeu 404 em 09/11/2026. | `curl`, 09/11/2026; #61 |
+| 8 | Acessibilidade básica | axe e teclado | Atende: axe sem violações; foco visível; sem rolagem em 375 px. O teste de ponta a ponta acha os campos pelos rótulos e o botão "Remover" pelo nome acessível. | Ciclo de 02/11/2026; `fluxo.e2e.js`, 09/11/2026 |
+| 9 | Segurança e conformidade | Riscos decididos | Atende: o app saiu do Expo 43 / React Native 0.64 para o Expo 57 / React Native 0.86; `npm audit` no app foi para 0 crítico e 0 alto (restam 4 moderados e 8 baixos em ferramentas de build). API e web sem alertas. Na `master` o Dependabot ainda lista 6 críticos e 50 altos, todos do `mobile/package-lock.json` antigo; fecham quando a migração chegar à `master`. | `npm audit` em `mobile`, `web` e `backend --omit=dev`; `gh api .../dependabot/alerts?state=open`, 09/11/2026 |
+| 10 | Entrega confiável | CI verde antes de entrar na principal | Parcial: CI roda em PR e push para `master` e `developer/**`, mas a `master` não tem proteção. | API `branches/master/protection` = 404, 09/11/2026; #62 |
+| 11 | Testes dos fluxos críticos | Testes automatizados no CI | Atende: 9 na API, 3 na web, 3 no app, 1 de ponta a ponta no navegador; o CI também empacota o app para Android (`expo export`). | `npm test` (API 9 pass, web 3 passed, app 3 passed), `npm run test:e2e` (1 passed) e `npx expo export --platform android` (ok), 09/11/2026 |
+| 12 | Documentação honesta | O README ensina a rodar | Atende: comandos conferidos com o `package.json`, inclusive `npm run demo` e `npm run test:e2e`; aviso de estudo; estado e próximos passos. | README, 09/11/2026 |
+
+## Hipótese (proposta)
+
+Praticar API, web e app móvel: cadastrar um dev pelo usuário do GitHub.
+
+## Fora do MVP
+
+Contas e mensagens.
+
+## Neste ciclo (07/11/2026)
+
+App migrado para o Expo 57 e React Navigation 7 (#63); fluxo principal percorrido no navegador com Playwright e job `e2e` no CI (#64); `npm run demo` sobe a API sem MongoDB.
+
+## Histórico
+
+### Tabela de 06/11/2026 (ciclo de 03/11/2026): 7 de 10 aplicáveis atendidos
 
 | # | Critério | Como verificar | Situação | Evidência e data |
 |---|---|---|---|---|
@@ -21,14 +52,3 @@
 | 11 | Testes dos fluxos críticos | Testes automatizados no CI | Atende: 9 na API, 3 na web, 2 no app. | CI do #60, 06/11/2026 |
 | 12 | Documentação honesta | O README ensina a rodar | Atende: comandos conferidos com o `package.json` (web na porta 3000 pelo `vite.config.mjs`); aviso de estudo; seção de estado e próximos passos. | README, 06/11/2026 |
 
-## 2. Hipótese (proposta)
-
-Praticar API, web e app móvel: cadastrar um dev pelo usuário do GitHub.
-
-## 3. Fora do MVP
-
-Contas e mensagens.
-
-## 4. Neste ciclo
-
-CI nos PRs para `developer/**`; cache `.expo` fora do Git; `axios` 1.x no app; aviso de cota do GitHub (429), com teste; documentação e 6 issues (#61 a #66).

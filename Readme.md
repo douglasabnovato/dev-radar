@@ -42,7 +42,7 @@
 
 - Integrar API, web React e app Expo.
 
-App móvel: Expo 43, React Native 0.64. O CI instala com `legacy-peer-deps` e roda os testes; não empacota o app.
+App móvel: Expo 57, React Native 0.86 e React Navigation 7 (desde 09/11/2026). O CI instala, testa e empacota para Android (`expo export`).
 
 - Buscar registros por localização, usando Mongoose e mapas no celular.
 - Atualizar telas em tempo real com Socket.IO.
@@ -62,12 +62,14 @@ Pré-requisitos: Node.js 20 e um cluster gratuito no MongoDB Atlas.
 cd backend
 cp .env.example .env      # preencha MONGODB_URI
 npm install
-npm run dev               # ou npm start · npm test (8 testes)
+npm run dev               # ou npm start · npm test (9 testes)
+npm run demo              # sem MongoDB: dados em memória (somem ao parar)
 
 # Web (porta 3000)
 cd ../web
 npm install
 npm start                 # VITE_API_URL aponta para a API (padrão http://localhost:3333)
+npx playwright install chromium && npm run test:e2e   # fluxo principal no navegador; sobe a API de demonstração sozinho
 
 # Mobile
 cd ../mobile
@@ -92,7 +94,7 @@ Tempo real (Socket.IO): conecte com `latitude`, `longitude` e `techs` na query e
 
 **Demonstração:** Fora do ar desde a conferência de 31/10/2026; para ver o projeto, rode localmente (seção "Como executar").
 
-API no Render (web service free, com WebSocket) + MongoDB Atlas M0; web no Render como site estático com `VITE_API_URL`. Os dois sobem juntos pelo `render.yaml` (branch `master`). A API dorme após 15 min sem acesso (~1 min para acordar). O app mobile (Expo SDK 43) fica fora do deploy até a atualização do SDK. Passo a passo completo: [docs/DEPLOY.md](docs/DEPLOY.md).
+API no Render (web service free, com WebSocket) + MongoDB Atlas M0; web no Render como site estático com `VITE_API_URL`. Os dois sobem juntos pelo `render.yaml` (branch `master`). A API dorme após 15 min sem acesso (~1 min para acordar). O app mobile (Expo SDK 57 desde 09/11/2026) não é publicado: roda no Expo Go apontando para a API. Passo a passo completo: [docs/DEPLOY.md](docs/DEPLOY.md).
 
 ## 📊 Estado do MVP & Documentação
 
@@ -107,27 +109,24 @@ API no Render (web service free, com WebSocket) + MongoDB Atlas M0; web no Rende
 | Antes (27/09/2026) | 3,10 | Reprovado — credenciais do banco no código, tempo real quebrado e app móvel sem compilar |
 | Depois (27/09/2026) | 7,68 | Aprovado — falta trocar a senha do Atlas e validar o app num aparelho |
 
-## Estado e próximos passos (ciclo de 03/11/2026)
+## Estado e próximos passos (ciclo de 07/11/2026)
 
-Projeto de estudo (N1): 7 de 10 critérios aplicáveis atendidos. Ainda não finalizado.
+Projeto de estudo (N1): 9 de 10 critérios aplicáveis atendidos. Finalizado: sim. O que falta (proteger a `master`, #62) depende do responsável.
 
 **O que foi feito**
-- Web migrada do Create React App para Vite e app móvel incluído no CI (#48).
-- `docs/MVP.md` criado com os 12 critérios (#57).
-- Dependências da API e do app atualizadas pelo Dependabot, inclusive `zod` 4 (#50 a #56).
-- Neste ciclo: CI também nos PRs para `developer/**`, `axios` 1.x no app, aviso claro quando a cota do GitHub acaba e cache `.expo` fora do Git (#60).
+- Web migrada do Create React App para Vite e app móvel incluído no CI (#48); `zod` 4 na API (#50 a #56).
+- CI nos PRs para `developer/**`, `axios` 1.x no app e aviso quando a cota do GitHub acaba (#60).
+- Ciclo de 07/11/2026: app móvel migrado do Expo 43 para o Expo 57, com React Navigation 7; o `npm audit` do app foi para 0 crítico e 0 alto (#63). O CI empacota o app para Android.
+- Fluxo principal percorrido no navegador com Playwright, no job `e2e` do CI (#64); `npm run demo` sobe a API sem MongoDB.
 
 **O que queremos fazer**
-- #61 Decidir a publicação no Render (responsável). O endereço `dev-radar.onrender.com` respondeu 404 em 06/11/2026, por isso não há link aqui.
+- #61 Decidir a publicação no Render (responsável). O endereço `dev-radar.onrender.com` respondeu 404 em 09/11/2026, por isso não há link aqui.
 - #62 Proteger a `master` com PR e CI obrigatórios (responsável).
-- #63 Migrar o app móvel para um Expo atual e zerar alertas altos.
-- #64 Percorrer o cadastro e a busca na tela.
 - #65 Token opcional do GitHub para subir a cota da API.
 - #66 Mostrar a distância de cada dev na busca.
-
-**Onde está a documentação**
-- Estado e critérios: [docs/MVP.md](docs/MVP.md)
-- Plano, pesquisa e backlog: [docs/PLANO-DE-ACAO.md](docs/PLANO-DE-ACAO.md) (seção "Ciclo de 03/11/2026")
+- #68 Mesclar o ciclo de 07/11/2026 na sprint e na `master` (responsável).
+- #69 Abrir o app migrado (Expo 57) num aparelho.
+- #70 Checar acessibilidade com axe no teste de ponta a ponta.
 
 ## :rocket: Tecnologias
 
