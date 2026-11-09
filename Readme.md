@@ -94,7 +94,7 @@ Tempo real (Socket.IO): conecte com `latitude`, `longitude` e `techs` na query e
 
 **Demonstração:** Fora do ar desde a conferência de 31/10/2026; para ver o projeto, rode localmente (seção "Como executar").
 
-API no Render (web service free, com WebSocket) + MongoDB Atlas M0; web no Render como site estático com `VITE_API_URL`. Os dois sobem juntos pelo `render.yaml` (branch `master`). A API dorme após 15 min sem acesso (~1 min para acordar). O app mobile (Expo SDK 57 desde 09/11/2026) não é publicado: roda no Expo Go apontando para a API. Passo a passo completo: [docs/DEPLOY.md](docs/DEPLOY.md).
+API no Render (web service free, com WebSocket) + MongoDB Atlas M0; web no Render como site estático com `VITE_API_URL`. Os dois sobem juntos pelo `render.yaml` (branch `master`). A API dorme após 15 min sem acesso (~1 min para acordar). O app mobile (Expo SDK 57 desde 09/11/2026) não é publicado: deve rodar no Expo Go apontando para a API, ainda sem verificação num aparelho (#69). Passo a passo completo: [docs/DEPLOY.md](docs/DEPLOY.md).
 
 ## 📊 Estado do MVP & Documentação
 

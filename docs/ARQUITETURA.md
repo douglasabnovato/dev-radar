@@ -70,7 +70,7 @@ Socket.IO: o cliente conecta com `query = { latitude, longitude, techs }`; receb
 ### ADR-004 — POST idempotente
 - Cadastro repetido devolve 200 com o registro atual; o índice único fecha a corrida entre duas requisições.
 
-### ADR-005 — Mobile corrigido sem atualizar o SDK
+### ADR-005 — Mobile corrigido sem atualizar o SDK (superada em 09/11/2026)
 - Em 09/11/2026 o app foi migrado do Expo SDK 43 para o 57, com React Navigation 7 no lugar do `react-navigation` 4 (#63). Falta abrir as telas num aparelho (#69).
 
 ## 6. Fora do escopo

@@ -12,7 +12,7 @@ function createMemoryRepository() {
         findByUsername: async (username) => devs.get(username.toLowerCase()) || null,
         create: async ({ latitude, longitude, ...data }) => {
             const dev = { _id: String(nextId++), ...data, location: { type: 'Point', coordinates: [longitude, latitude] } };
-            devs.set(dev.github_username, dev);
+            devs.set(dev.github_username.toLowerCase(), dev);
             return dev;
         },
         updateByUsername: async (username, { techs, latitude, longitude }) => {
