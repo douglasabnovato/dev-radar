@@ -10,32 +10,7 @@ const calculateDistance = require('../src/utils/calculateDistance');
 const parseStringAsArray = require('../src/utils/parseStringAsArray');
 const { createConnectionRegistry } = require('../src/websocket');
 const { createGithubService } = require('../src/services/githubService');
-
-/* Repositório em memória com o mesmo contrato do mongoDevRepository. */
-function createMemoryRepository() {
-    const devs = new Map();
-    return {
-        list: async () => [...devs.values()],
-        findByUsername: async (username) => devs.get(username.toLowerCase()) || null,
-        create: async ({ latitude, longitude, ...data }) => {
-            const dev = { _id: String(devs.size + 1), ...data, location: { type: 'Point', coordinates: [longitude, latitude] } };
-            devs.set(dev.github_username, dev);
-            return dev;
-        },
-        updateByUsername: async (username, { techs, latitude, longitude }) => {
-            const dev = devs.get(username.toLowerCase());
-            if (!dev) return null;
-            if (techs) dev.techs = techs;
-            if (latitude !== undefined) dev.location = { type: 'Point', coordinates: [longitude, latitude] };
-            return dev;
-        },
-        deleteByUsername: async (username) => devs.delete(username.toLowerCase()),
-        searchNear: async ({ latitude, longitude, techs, maxDistance }) =>
-            [...devs.values()].filter((dev) =>
-                dev.techs.some((tech) => techs.includes(tech)) &&
-                calculateDistance({ latitude, longitude }, { latitude: dev.location.coordinates[1], longitude: dev.location.coordinates[0] }) * 1000 <= maxDistance),
-    };
-}
+const { createMemoryRepository } = require('../src/repositories/memoryDevRepository');
 
 const JUIZ_DE_FORA = { latitude: -21.7642, longitude: -43.3503 };
 let app;

@@ -15,7 +15,7 @@ Publicar uma API Express + Socket.IO com MongoDB e um front React que usa a geol
 | **Banco** | MongoDB Atlas, cluster gratuito M0 | Persistente e gratuito; índice geoespacial `2dsphere` suportado |
 | **API** (`backend/`) | Render, serviço web gratuito (`dev-radar-api`) | Node com WebSocket, `MONGODB_URI` pedida no painel |
 | **Web** (`web/`) | Render, site estático gratuito (`dev-radar`) | HTTPS (exigido pela geolocalização), CDN, não hiberna |
-| **Mobile** (`mobile/`) | Fora deste deploy | Expo SDK 43 não abre no Expo Go atual; depende da atualização do SDK |
+| **Mobile** (`mobile/`) | Fora deste deploy | Expo SDK 57 desde 09/11/2026: deve rodar no Expo Go apontando para a API; não verificado num aparelho (#69) |
 
 ### Pontos de atenção
 
