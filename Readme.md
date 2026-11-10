@@ -111,7 +111,7 @@ API no Render (web service free, com WebSocket) + MongoDB Atlas M0; web no Rende
 
 ## Estado e próximos passos (ciclo de 07/11/2026)
 
-Projeto de estudo (N1): 9 de 10 critérios aplicáveis atendidos. Finalizado: sim. O que falta (proteger a `master`, #62) depende do responsável.
+Projeto de estudo (N1): 10 de 10 critérios aplicáveis atendidos. Finalizado: sim. A `master` está protegida desde 10/11/2026 (ruleset `principal-protegida`, #62).
 
 **O que foi feito**
 - Web migrada do Create React App para Vite e app móvel incluído no CI (#48); `zod` 4 na API (#50 a #56).
@@ -121,7 +121,7 @@ Projeto de estudo (N1): 9 de 10 critérios aplicáveis atendidos. Finalizado: si
 
 **O que queremos fazer**
 - #61 Decidir a publicação no Render (responsável). O endereço `dev-radar.onrender.com` respondeu 404 em 09/11/2026, por isso não há link aqui.
-- #62 Proteger a `master` com PR e CI obrigatórios (responsável).
+- #62 Proteger a `master`: feito em 10/11/2026; a issue fecha no merge da `master`.
 - #65 Token opcional do GitHub para subir a cota da API.
 - #66 Mostrar a distância de cada dev na busca.
 - #68 Mesclar o ciclo de 07/11/2026 na sprint e na `master` (responsável).
