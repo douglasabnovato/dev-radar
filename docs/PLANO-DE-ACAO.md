@@ -75,3 +75,56 @@
 4. `docs/MVP.md` com régua N1, critério 9 corrigido para "Parcial" (o app tinha alertas que a leitura anterior não contou) e critério 10 em "Parcial"; README com estado e próximos passos.
 
 **Vira issue.** #61 e #62 (responsável); #63 a #66 (agente).
+
+## Ciclo de 07/11/2026
+
+> Executado em 09/11/2026. Branch `feature/2026-11-07` → `developer/sprint-2026-11-12` → `master` (o PR para a `master` fica com o responsável). Nível: Estudo (N1), 10 critérios aplicáveis. Antes: 7 de 10.
+
+### Produto
+
+**Problema e público.** Os mesmos do ciclo anterior: quem procura devs por tecnologia os encontra no mapa, num raio de 10 km.
+
+**Hipótese e meta.** Cadastrar um dev pelo usuário do GitHub e achá-lo na busca. Meta deste ciclo: ver o fluxo rodar no navegador e tirar o app do Expo 43, que concentrava todos os alertas críticos e altos.
+
+**O que a pesquisa trouxe.**
+
+| Ideia | O que levamos para o projeto | Fonte |
+|---|---|---|
+| Desde o React Navigation 5 não existe `getParam`; os parâmetros vêm de `route.params`, e os novos substituem os antigos | `Profile.js` lê `route.params?.github_username`; a pilha virou `createNativeStackNavigator` | [Fórum freeCodeCamp: getParam](https://forum.freecodecamp.org/t/why-does-getparam-not-work/398949), [React Navigation: upgrading from 6.x](https://reactnavigation.org/docs/upgrading-from-6.x) |
+| O texto do pedido de localização se define no plugin do `expo-location` (`locationWhenInUsePermission`) no `app.json` | Plugin com texto em português no `app.json` | [Expo: Location (SDK 57)](https://docs.expo.dev/versions/v57.0.0/sdk/location.md) |
+| O Playwright simula a posição do navegador com `geolocation` e `permissions` | O teste de ponta a ponta cobre o preenchimento automático de latitude e longitude | [Playwright: web server](https://playwright.dev/docs/test-webserver), [Playwright: dialogs](https://playwright.dev/docs/dialogs) |
+
+**Backlog priorizado (impacto × esforço).**
+
+| Prioridade | Item | Impacto | Esforço | Destino |
+|---|---|---|---|---|
+| 1 | App no Expo 57 (zera críticos e altos) | Alto | Alto | Este ciclo (#63) |
+| 2 | Fluxo principal no navegador, com teste no CI | Alto | Médio | Este ciclo (#64) |
+| 3 | Abrir o app migrado num aparelho | Alto | Médio | #69 |
+| 4 | axe no teste de ponta a ponta | Médio | Baixo | #70 |
+| 5 | Token do GitHub e distância na busca | Médio | Baixo | #65, #66 |
+| 6 | Mesclar, publicar e proteger a `master` | Alto | Baixo | Responsável (#68, #61, #62) |
+
+**Fora do escopo.** Contas, mensagens, login com GitHub.
+
+### Engenharia
+
+**Arquitetura.** API Express com repositório injetado: Mongo em produção e, agora, `memoryDevRepository.js` compartilhado pelos testes e pela API de demonstração (`npm run demo`, com `DEMO_GITHUB=offline` para simular o GitHub). Web em Vite. App em Expo 57 com React Navigation 7 e entrada própria em `mobile/index.js`.
+
+**Riscos.**
+- Migração do app é troca de versão maior (Expo 43 → 57, React Native 0.64 → 0.86) e só foi verificada por testes e `expo export`, sem abrir as telas (#69).
+- `react-native-maps` pode não rodar no Expo Go e exigir build de desenvolvimento.
+- O perfil simulado da demonstração não testa a chamada real ao GitHub; ela segue coberta pelos testes do `githubService`.
+
+**Qualidade.** API 9 testes, web 3, app 3, ponta a ponta 1 (Playwright 1.65), `expo export` no CI. `npm audit`: API e web 0; app 0 crítico e 0 alto.
+
+**Definição de pronto.** `npm test` nos três pacotes, `npm run build` na web, `npm run test:e2e` e `npx expo export --platform android` verdes, CI verde no PR para a sprint, `docs/MVP.md` e README atualizados.
+
+### Plano de ação
+
+**Este ciclo executa.**
+1. Migração do app para o Expo 57 e React Navigation 7, com `expo export` no CI (#63). Item de revisão no PR: troca de versão maior.
+2. API de demonstração em memória e teste Playwright do fluxo principal, com job `e2e` no CI (#64).
+3. `docs/MVP.md` com uma tabela só e README com o estado do ciclo.
+
+**Vira issue.** #68 (mesclar, responsável), #69 (app num aparelho), #70 (axe no teste de ponta a ponta).
