@@ -1,10 +1,10 @@
 # MVP — dev-radar
 
-> Revisto em 09/11/2026 (ciclo de 07/11/2026). Nível: **Estudo (N1)**. Os critérios 5 e 7 não se aplicam ao N1 e saem da conta. Testado no Windows, com Node 24, no clone da `feature/2026-11-07`. Não houve teste com pessoas nem em aparelho real.
+> Revisto em 09/11/2026 (ciclo de 07/11/2026); critério 10 revisto em 10/11/2026. Nível: **Estudo (N1)**. Os critérios 5 e 7 não se aplicam ao N1 e saem da conta. Testado no Windows, com Node 24, no clone da `feature/2026-11-07`. Não houve teste com pessoas nem em aparelho real.
 
-**Resumo:** 9 de 10 aplicáveis atendidos
+**Resumo:** 10 de 10 aplicáveis atendidos
 
-**Finalizado:** sim — o único critério aplicável que falta (10) depende do responsável e tem a issue #62 com o rótulo `depende-do-responsavel`.
+**Finalizado:** sim — todos os critérios aplicáveis estão em "Atende". A proteção da `master` (#62) foi criada em 10/11/2026; a issue fecha no merge da `master`.
 
 | # | Critério | Como verificar | Situação | Evidência e data |
 |---|---|---|---|---|
@@ -17,7 +17,7 @@
 | 7 | Desempenho aceitável | LCP de até 2,5 s no celular | Não se aplica (N1). `dev-radar.onrender.com` respondeu 404 em 09/11/2026. | `curl`, 09/11/2026; #61 |
 | 8 | Acessibilidade básica | axe e teclado | Atende: axe sem violações; foco visível; sem rolagem em 375 px. O teste de ponta a ponta acha os campos pelos rótulos e o botão "Remover" pelo nome acessível. | Ciclo de 02/11/2026; `fluxo.e2e.js`, 09/11/2026 |
 | 9 | Segurança e conformidade | Riscos decididos | Atende: o app saiu do Expo 43 / React Native 0.64 para o Expo 57 / React Native 0.86; `npm audit` no app foi para 0 crítico e 0 alto (restam 4 moderados e 8 baixos em ferramentas de build). API e web sem alertas. Na `master` o Dependabot ainda lista 6 críticos e 50 altos, todos do `mobile/package-lock.json` antigo; fecham quando a migração chegar à `master`. | `npm audit` em `mobile`, `web` e `backend --omit=dev`; `gh api .../dependabot/alerts?state=open`, 09/11/2026 |
-| 10 | Entrega confiável | CI verde antes de entrar na principal | Parcial: CI roda em PR e push para `master` e `developer/**`, mas a `master` não tem proteção. | API `branches/master/protection` = 404, 09/11/2026; #62 |
+| 10 | Entrega confiável | CI verde antes de entrar na principal | Atende: o workflow `CI` (jobs `backend`, `web`, `mobile` e `e2e`) roda em PR e push para `master` e `developer/**`; a `master` tem o ruleset `principal-protegida` ativo (exige PR, bloqueia force push e exclusão). | `gh api repos/douglasabnovato/dev-radar/rulesets`, 10/11/2026: `principal-protegida`, `enforcement: active`; #62 |
 | 11 | Testes dos fluxos críticos | Testes automatizados no CI | Atende: 9 na API, 3 na web, 3 no app, 1 de ponta a ponta no navegador; o CI também empacota o app para Android (`expo export`). | `npm test` (API 9 pass, web 3 passed, app 3 passed), `npm run test:e2e` (1 passed) e `npx expo export --platform android` (ok), 09/11/2026 |
 | 12 | Documentação honesta | O README ensina a rodar | Atende: comandos conferidos com o `package.json`, inclusive `npm run demo` e `npm run test:e2e`; aviso de estudo; estado e próximos passos. | README, 09/11/2026 |
 
