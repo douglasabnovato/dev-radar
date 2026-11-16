@@ -111,7 +111,7 @@ API no Render (web service free, com WebSocket) + MongoDB Atlas M0; web no Rende
 
 ## Estado e próximos passos (ciclo de 15/11/2026)
 
-Projeto de estudo (N1): 9 de 10 critérios aplicáveis atendidos. Finalizado: não, porque o critério 9 está em "Parcial": dos 3 alertas do Dependabot no app móvel (16/11/2026), 1 foi corrigido na sprint-19 e 2 seguem sem correção dentro do Expo 57 (#78). A `master` está protegida desde 10/11/2026 (ruleset `principal-protegida`, #62).
+Projeto de estudo (N1): 10 de 10 critérios aplicáveis atendidos. Finalizado: sim. Dos 3 alertas do Dependabot no app móvel (16/11/2026), 1 foi corrigido na sprint-19 e 2 estão aceitos na [ADR-006](docs/ARQUITETURA.md#adr-006--aceitar-os-alertas-de-desenvolvimento-do-dependabot), porque ficam nas ferramentas de build e de teste e não entram no app. A `master` está protegida desde 10/11/2026 (ruleset `principal-protegida`, #62).
 
 **O que foi feito**
 - Web migrada do Create React App para Vite e app móvel incluído no CI (#48); `zod` 4 na API (#50 a #56).
@@ -121,7 +121,7 @@ Projeto de estudo (N1): 9 de 10 critérios aplicáveis atendidos. Finalizado: n�
 - Ciclo de 15/11/2026: axe no teste de navegador, em 3 estados (#70); token opcional do GitHub, `GITHUB_TOKEN`, para subir a cota de consultas (#65); mongoose 6.13.12; hipótese com meta no `docs/MVP.md`.
 
 **O que queremos fazer**
-- #78 Resolver os 2 alertas do Dependabot que restam no app (`minimatch` e `deepmerge`).
+- #78 Os 2 alertas que restam no app (`minimatch` e `deepmerge`) estão na [ADR-006](docs/ARQUITETURA.md#adr-006--aceitar-os-alertas-de-desenvolvimento-do-dependabot); revisar na migração para o Expo 58.
 - #61 Decidir a publicação no Render (responsável). O endereço `dev-radar.onrender.com` respondeu 404 em 09/11/2026, por isso não há link aqui.
 - #62 Proteger a `master`: feito em 10/11/2026; a issue fecha no merge da `master`.
 - #66 Mostrar a distância de cada dev na busca.
