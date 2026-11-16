@@ -109,7 +109,7 @@ API no Render (web service free, com WebSocket) + MongoDB Atlas M0; web no Rende
 | Antes (27/09/2026) | 3,10 | Reprovado — credenciais do banco no código, tempo real quebrado e app móvel sem compilar |
 | Depois (27/09/2026) | 7,68 | Aprovado — falta trocar a senha do Atlas e validar o app num aparelho |
 
-## Estado e próximos passos (ciclo de 07/11/2026)
+## Estado e próximos passos (ciclo de 16/11/2026)
 
 Projeto de estudo (N1): 10 de 10 critérios aplicáveis atendidos. Finalizado: sim. A `master` está protegida desde 10/11/2026 (ruleset `principal-protegida`, #62).
 
@@ -118,15 +118,14 @@ Projeto de estudo (N1): 10 de 10 critérios aplicáveis atendidos. Finalizado: s
 - CI nos PRs para `developer/**`, `axios` 1.x no app e aviso quando a cota do GitHub acaba (#60).
 - Ciclo de 07/11/2026: app móvel migrado do Expo 43 para o Expo 57, com React Navigation 7; o `npm audit` do app foi para 0 crítico e 0 alto (#63). O CI empacota o app para Android.
 - Fluxo principal percorrido no navegador com Playwright, no job `e2e` do CI (#64); `npm run demo` sobe a API sem MongoDB.
+- Ciclo de 16/11/2026: axe no teste de navegador, em 3 estados e no tema escuro (#70); token opcional do GitHub, `GITHUB_TOKEN`, para subir a cota de consultas (#65); mongoose 6.13.12; hipótese com meta no `docs/MVP.md`.
 
 **O que queremos fazer**
 - #61 Decidir a publicação no Render (responsável). O endereço `dev-radar.onrender.com` respondeu 404 em 09/11/2026, por isso não há link aqui.
 - #62 Proteger a `master`: feito em 10/11/2026; a issue fecha no merge da `master`.
-- #65 Token opcional do GitHub para subir a cota da API.
 - #66 Mostrar a distância de cada dev na busca.
 - #68 Mesclar o ciclo de 07/11/2026 na sprint e na `master` (responsável).
 - #69 Abrir o app migrado (Expo 57) num aparelho.
-- #70 Checar acessibilidade com axe no teste de ponta a ponta.
 
 ## :rocket: Tecnologias
 
