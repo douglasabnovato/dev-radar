@@ -69,6 +69,7 @@ Publicar uma API Express + Socket.IO com MongoDB e um front React que usa a geol
 3. O Render pede `MONGODB_URI`: colar a URI da Etapa 1.
 4. **Apply** e acompanhar os **Logs** da API até aparecer `DevRadar API em http://localhost:10000`.
 5. Se o endereço da API não for `https://dev-radar-api.onrender.com`, abrir o serviço `dev-radar` → **Environment**, corrigir `VITE_API_URL` e fazer **Manual Deploy → Deploy latest commit**.
+6. Opcional, para a demonstração não esgotar a cota do GitHub (60 consultas por hora sem token): criar em GitHub → Settings → Developer settings → **Fine-grained tokens** um token sem nenhuma permissão extra (só leitura pública). No serviço `dev-radar-api` → **Environment**, criar `GITHUB_TOKEN` com esse valor. O token é do responsável e fica só ali, nunca no código nem no `.env` versionado.
 
 ### Etapa 5 · Conferir no ar
 
