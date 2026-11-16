@@ -111,7 +111,7 @@ API no Render (web service free, com WebSocket) + MongoDB Atlas M0; web no Rende
 
 ## Estado e próximos passos (ciclo de 15/11/2026)
 
-Projeto de estudo (N1): 10 de 10 critérios aplicáveis atendidos. Finalizado: sim. A `master` está protegida desde 10/11/2026 (ruleset `principal-protegida`, #62).
+Projeto de estudo (N1): 9 de 10 critérios aplicáveis atendidos. Finalizado: não, porque o critério 9 está em "Parcial": 3 alertas do Dependabot no app móvel esperam decisão (#78). A `master` está protegida desde 10/11/2026 (ruleset `principal-protegida`, #62).
 
 **O que foi feito**
 - Web migrada do Create React App para Vite e app móvel incluído no CI (#48); `zod` 4 na API (#50 a #56).
