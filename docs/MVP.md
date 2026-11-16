@@ -2,9 +2,9 @@
 
 > Revisto em 09/11/2026 (ciclo de 07/11/2026), em 10/11/2026 (critério 10) e em 15/11/2026 (critérios 2, 8, 9 e 11). Nível: **Estudo (N1)**. Os critérios 5 e 7 não se aplicam ao N1 e saem da conta. Testado no Windows, com Node 24, no clone da `feature/2026-11-16`. Não houve teste com pessoas nem em aparelho real.
 
-**Resumo:** 10 de 10 aplicáveis atendidos
+**Resumo:** 9 de 10 aplicáveis atendidos
 
-**Finalizado:** sim — todos os critérios aplicáveis estão em "Atende". A proteção da `master` (#62) foi criada em 10/11/2026; a issue fecha no merge da `master`.
+**Finalizado:** não — o critério 9 está em "Parcial" desde 16/11/2026: 3 alertas do Dependabot no app móvel ainda não têm decisão (#78). A proteção da `master` (#62) foi criada em 10/11/2026; a issue fecha no merge da `master`.
 
 | # | Critério | Como verificar | Situação | Evidência e data |
 |---|---|---|---|---|
@@ -16,7 +16,7 @@
 | 6 | Falhas tratadas | Erro, vazio e carregamento têm resposta clara | Atende: sem API, a web mostra o erro e "Tentar novamente"; sem localização, pede latitude e longitude; usuário inexistente e cota do GitHub com mensagem clara. | `npm test` em `web` (3 passed) e `backend` (10 pass); `fluxo.e2e.js`, 15/11/2026 |
 | 7 | Desempenho aceitável | LCP de até 2,5 s no celular | Não se aplica (N1). `dev-radar.onrender.com` respondeu 404 em 09/11/2026. | `curl`, 09/11/2026; #61 |
 | 8 | Acessibilidade básica | axe e teclado | Atende: axe (WCAG A e AA) sem violações no teste de navegador, em 3 estados (carregado, depois do cadastro e com o erro de usuário inexistente); o teste acha os campos pelos rótulos e o botão "Remover" pelo nome acessível; foco visível e sem rolagem em 375 px (ciclo de 02/11/2026). A web não tem tema escuro próprio, então a checagem no escuro não se aplica. | `cd web && npm run test:e2e`: 3 execuções, 1 passed em cada, 15/11/2026; job `e2e` no CI |
-| 9 | Segurança e conformidade | Riscos decididos | Atende: API com mongoose 6.13.12 e `npm audit --omit=dev` 0; web sem alertas; app no Expo 57 com 0 crítico e 0 alto no `npm audit`. O token do GitHub é opcional e só vai nos segredos da hospedagem. Na `master` o Dependabot ainda lista 76 alertas abertos do `mobile/package-lock.json` antigo (`gh api repos/douglasabnovato/dev-radar/dependabot/alerts?state=open`); fecham quando a migração chegar à `master` (#68). | `npm audit --omit=dev` em `backend`: 0; `gh api .../dependabot/alerts?state=open`, 15/11/2026 |
+| 9 | Segurança e conformidade | Riscos decididos | Parcial: API com mongoose 6.13.12 e `npm audit --omit=dev` 0; web sem alertas; o token do GitHub é opcional e só vai nos segredos da hospedagem. O Dependabot lista 3 alertas abertos, todos no `mobile/package-lock.json` e sem decisão escrita: 2 médios (`glob` 13.0.7 dentro de `@expo/fingerprint`, que o PR #77 remove; `minimatch` 10.2.6, pedido pelo `@expo/fingerprint`) e 1 baixo (`deepmerge` 4.3.1, só de desenvolvimento, sem correção publicada). Corrigir ou decidir cada um: #78. | `gh api "repos/douglasabnovato/dev-radar/dependabot/alerts?state=open"` em 16/11/2026: 3 (2 médios, 1 baixo); `npm audit --package-lock-only --omit=dev` em `mobile/`, 16/11/2026: 3 moderados; `npm audit --omit=dev` em `backend`: 0 |
 | 10 | Entrega confiável | CI verde antes de entrar na principal | Atende: o workflow `CI` (jobs `backend`, `web`, `mobile` e `e2e`) roda em PR e push para `master` e `developer/**`; a `master` tem o ruleset `principal-protegida` ativo (exige PR, bloqueia force push e exclusão). | `gh api repos/douglasabnovato/dev-radar/rulesets`, 10/11/2026: `principal-protegida`, `enforcement: active`; #62 |
 | 11 | Testes dos fluxos críticos | Testes automatizados no CI | Atende: 10 na API, 3 na web, 3 no app, 1 de ponta a ponta no navegador; o CI também empacota o app para Android (`expo export`). | `npm test` em `backend` (10 pass) e `web` (3 passed), `npm run test:e2e` (1 passed), 15/11/2026 |
 | 12 | Documentação honesta | O README ensina a rodar | Atende: comandos conferidos com o `package.json`, inclusive `npm run demo` e `npm run test:e2e`; aviso de estudo; estado e próximos passos. | README, 09/11/2026 |
