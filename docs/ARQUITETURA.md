@@ -73,6 +73,21 @@ Socket.IO: o cliente conecta com `query = { latitude, longitude, techs }`; receb
 ### ADR-005 — Mobile corrigido sem atualizar o SDK (superada em 09/11/2026)
 - Em 09/11/2026 o app foi migrado do Expo SDK 43 para o 57, com React Navigation 7 no lugar do `react-navigation` 4 (#63). Falta abrir as telas num aparelho (#69).
 
+### ADR-006 — Aceitar os alertas de desenvolvimento do Dependabot
+- **Status:** Aceita. **Data:** 16/11/2026.
+- **Contexto:** em 16/11/2026, às 14h39, `gh api "repos/douglasabnovato/dev-radar/dependabot/alerts?state=open&per_page=100"` devolveu 3 alertas, todos em `mobile/package-lock.json`. API e web não têm alerta. Regra para os alertas, ordem do responsável repassada pelo DG líder em 16/11/2026: "Regra geral por ADR. alertas que nao atrapalham a producao, pode passar. os que atrapalham, entender, escolher a melhor estrategia para manter a funcionalidade". "Produção" é a API e a web publicadas e o JavaScript que o Metro empacota no app (estudo N1, roda no Expo Go, sem build em loja).
+- **Decisão:**
+
+| Alerta | Pacote | Severidade | Quem o puxa | Por que não chega à produção |
+|---|---|---|---|---|
+| #621 | `minimatch` 10.2.6 (GHSA-g3hv-75wg-m249) | média | `expo` → `@expo/fingerprint` 0.20.16 | Ferramenta de build e da CLI do Expo; fora do bundle. A correção só existe na versão 11, que o Expo 57 não aceita. |
+| #613 | `deepmerge` 4.3.1 (GHSA-gcqx-w48m-w2h4) | baixa | `jest` → `@jest/core` → `jest-config` | Só roda nos testes, em dependência de desenvolvimento. Sem versão corrigida publicada. |
+| #620 | `glob` (GHSA-3g3m-2fjr-6pw4) | média | CLI e config do Expo | Fora desta ADR: corrigido na sprint-19 (PR #81, `glob` 14.0.4); fecha no merge na `master`. |
+
+- **Prova** (16/11/2026, `mobile/` no clone da `developer/sprint-2026-11-19`, depois de `npm ci`): `npm ls minimatch deepmerge glob --all` mostra `minimatch@10.2.6` só sob `@expo/fingerprint`, `deepmerge@4.3.1` só sob `jest-config` e todo `glob` 9 a 14 em 14.0.4. `npx expo export --platform android --source-maps`: 960 módulos no mapa de fontes, 0 de `minimatch`, `glob`, `deepmerge`, `@expo/fingerprint` ou `jest`; o único arquivo de `@expo/cli` é o carregador de módulos do Metro (`metro-require/require.js`). `npm audit --omit=dev`: 3 moderados, todos na cadeia `expo` → `@expo/fingerprint` → `minimatch`. Nenhum alerta foi fechado ou dispensado pela API.
+- **Consequências:** o risco fica no ambiente de quem desenvolve e no CI (CLI do Expo e testes), não no site, na API nem no app empacotado. Os alertas #621 e #613 seguem abertos no GitHub e contam como cobertos no critério 9 do `docs/MVP.md`.
+- **Quando revisar:** se `minimatch`, `deepmerge` ou `@expo/fingerprint` aparecerem no mapa de fontes do `npx expo export`; se sair correção sem versão maior dentro do Expo 57; na migração para o Expo SDK 58.
+
 ## 6. Fora do escopo
 - Autenticação (hoje qualquer pessoa pode editar/remover um cadastro pelo nome de usuário — aceitável no MVP de portfólio, mas precisa de login com GitHub OAuth antes de uso real).
 - Atualização do Expo SDK e testes do mobile.
