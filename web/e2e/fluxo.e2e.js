@@ -46,14 +46,4 @@ test("cadastra dev, encontra pela busca e remove", async ({ page, request }) => 
   await page.reload();
   await expect(page.locator(".dev-item").filter({ hasText: `Dev ${usuario}` })).toHaveCount(0);
 });
-test.describe("tema escuro", () => {
-  test.use({ colorScheme: "dark" });
-
-  test("formulário e lista sem violações do axe", async ({ page }) => {
-    await page.goto("/");
-    await expect(page.getByRole("status").filter({ hasText: "Carregando devs" })).toHaveCount(0);
-    await expect(page.getByLabel("Usuário do GitHub")).toBeVisible();
-    await semViolacoes(page);
-  });
-});
 /* Fim de fluxo.e2e.js */

@@ -149,14 +149,14 @@
 | Ideia | O que levamos para o projeto | Fonte |
 |---|---|---|
 | Token sobe a cota da API REST do GitHub de 60 para 5.000 consultas por hora | `GITHUB_TOKEN` opcional, só nos segredos da hospedagem | [GitHub Docs: limites da API REST](https://docs.github.com/en/rest/using-the-rest-api/rate-limits-for-the-rest-api) |
-| axe dentro do teste de navegador | `@axe-core/playwright` nos três estados do fluxo e no tema escuro | [Playwright: testes de acessibilidade](https://playwright.dev/docs/accessibility-testing) |
+| axe dentro do teste de navegador | `@axe-core/playwright` nos três estados do fluxo (a web não tem tema escuro) | [Playwright: testes de acessibilidade](https://playwright.dev/docs/accessibility-testing) |
 
 **Backlog priorizado (impacto × esforço).**
 
 | Prioridade | Item | Impacto | Esforço | Destino |
 |---|---|---|---|---|
 | 1 | mongoose 6.13.12 na API | Alto | Baixo | Este ciclo |
-| 2 | axe no teste de ponta a ponta, claro e escuro | Alto | Baixo | Este ciclo (#70) |
+| 2 | axe no teste de ponta a ponta | Alto | Baixo | Este ciclo (#70) |
 | 3 | Hipótese com meta | Médio | Baixo | Este ciclo |
 | 4 | Token opcional do GitHub | Médio | Baixo | Este ciclo (#65) |
 | 5 | Distância de cada dev na busca | Médio | Médio | Issue (#66) |

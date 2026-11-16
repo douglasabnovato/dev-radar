@@ -118,7 +118,7 @@ Projeto de estudo (N1): 10 de 10 critérios aplicáveis atendidos. Finalizado: s
 - CI nos PRs para `developer/**`, `axios` 1.x no app e aviso quando a cota do GitHub acaba (#60).
 - Ciclo de 07/11/2026: app móvel migrado do Expo 43 para o Expo 57, com React Navigation 7; o `npm audit` do app foi para 0 crítico e 0 alto (#63). O CI empacota o app para Android.
 - Fluxo principal percorrido no navegador com Playwright, no job `e2e` do CI (#64); `npm run demo` sobe a API sem MongoDB.
-- Ciclo de 16/11/2026: axe no teste de navegador, em 3 estados e no tema escuro (#70); token opcional do GitHub, `GITHUB_TOKEN`, para subir a cota de consultas (#65); mongoose 6.13.12; hipótese com meta no `docs/MVP.md`.
+- Ciclo de 16/11/2026: axe no teste de navegador, em 3 estados (#70); token opcional do GitHub, `GITHUB_TOKEN`, para subir a cota de consultas (#65); mongoose 6.13.12; hipótese com meta no `docs/MVP.md`.
 
 **O que queremos fazer**
 - #61 Decidir a publicação no Render (responsável). O endereço `dev-radar.onrender.com` respondeu 404 em 09/11/2026, por isso não há link aqui.
