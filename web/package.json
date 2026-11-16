@@ -17,6 +17,7 @@
   },
   "description": "Web do DevRadar: cadastro de devs e listagem.",
   "devDependencies": {
+    "@axe-core/playwright": "^4.14.0",
     "@playwright/test": "^1.65.0",
     "@testing-library/jest-dom": "^5.17.0",
     "@testing-library/react": "^13.4.0",

@@ -19,7 +19,7 @@ async function main() {
     let notifier = { notifyNewDev: () => {} };
     const app = createApp({
         repository,
-        github: createGithubService(),
+        github: createGithubService(globalThis.fetch, env.githubToken),
         notifier: { notifyNewDev: (...args) => notifier.notifyNewDev(...args) },
         corsOrigin: env.corsOrigin,
         radiusMeters: env.searchRadiusMeters,

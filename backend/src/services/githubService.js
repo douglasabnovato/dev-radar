@@ -3,15 +3,17 @@
  */
 const { AppError } = require('../lib/errors');
 
-/* Cria o serviço; fetchImpl é injetável para testes. */
-function createGithubService(fetchImpl = globalThis.fetch) {
+/* Cria o serviço; fetchImpl é injetável para testes. Com token, a consulta vai autenticada. */
+function createGithubService(fetchImpl = globalThis.fetch, token) {
+    const headers = { Accept: 'application/vnd.github+json', 'User-Agent': 'devradar' };
+    if (token) headers.Authorization = `Bearer ${token}`;
     return {
         /* Devolve { login, name, avatar_url, bio } ou lança 404/429/503. */
         async getUser(username) {
             let response;
             try {
                 response = await fetchImpl(`https://api.github.com/users/${encodeURIComponent(username)}`, {
-                    headers: { Accept: 'application/vnd.github+json', 'User-Agent': 'devradar' },
+                    headers,
                     signal: AbortSignal.timeout(5000),
                 });
             } catch (error) {

@@ -119,4 +119,16 @@ test('serviço do GitHub avisa quando a cota de consultas acaba', async () => {
     const forbidden = createGithubService(async () => ({ ok: false, status: 403, headers: headers({ 'x-ratelimit-remaining': '12' }) }));
     await assert.rejects(forbidden.getUser('x'), { status: 503 });
 });
+test('serviço do GitHub manda o token só quando ele existe', async () => {
+    const vistos = [];
+    const fake = async (url, options) => {
+        vistos.push(options.headers);
+        return { ok: true, status: 200, headers: { get: () => null }, json: async () => ({ login: 'ana', name: 'Ana', avatar_url: 'https://x/a.png', bio: '' }) };
+    };
+    await createGithubService(fake, 'token-de-teste').getUser('ana');
+    await createGithubService(fake).getUser('ana');
+    assert.equal(vistos[0].Authorization, 'Bearer token-de-teste');
+    assert.equal('Authorization' in vistos[1], false);
+    assert.equal(vistos[1]['User-Agent'], 'devradar');
+});
 /* fim de api.test.js */
