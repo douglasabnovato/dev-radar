@@ -128,3 +128,51 @@
 3. `docs/MVP.md` com uma tabela só e README com o estado do ciclo.
 
 **Vira issue.** #68 (mesclar, responsável), #69 (app num aparelho), #70 (axe no teste de ponta a ponta).
+
+## Ciclo de 16/11/2026
+
+> Branch `feature/2026-11-16` → `developer/sprint-2026-11-12` → `master`. A sprint ainda não foi para a `master` (PR #72), então o trabalho entra nela. Nível: Estudo (N1).
+
+### Produto
+
+**Problema e público.** Quem procura devs por tecnologia os encontra no mapa, perto de onde está.
+
+**O que a análise achou.**
+- O critério 8 cita o axe do ciclo de 02/11, mas o teste de ponta a ponta não roda o axe (#70).
+- A hipótese não tem meta nem o "saberemos quando" que a régua pede no critério 2.
+- `npm audit --omit=dev` no backend acusa o mongoose 6.0 a 6.13.11 (alto). O Dependabot propõe 6.13.12 (#74).
+- Sem token, a API do GitHub aceita 60 consultas por hora por IP. Numa demonstração, a cota acaba rápido (#65).
+- 76 alertas do app móvel estão na `master` antiga; fecham quando a sprint, com o Expo 57, chegar à `master`.
+
+**O que a pesquisa trouxe.**
+
+| Ideia | O que levamos para o projeto | Fonte |
+|---|---|---|
+| Token sobe a cota da API REST do GitHub de 60 para 5.000 consultas por hora | `GITHUB_TOKEN` opcional, só nos segredos da hospedagem | [GitHub Docs: limites da API REST](https://docs.github.com/en/rest/using-the-rest-api/rate-limits-for-the-rest-api) |
+| axe dentro do teste de navegador | `@axe-core/playwright` nos três estados do fluxo e no tema escuro | [Playwright: testes de acessibilidade](https://playwright.dev/docs/accessibility-testing) |
+
+**Backlog priorizado (impacto × esforço).**
+
+| Prioridade | Item | Impacto | Esforço | Destino |
+|---|---|---|---|---|
+| 1 | mongoose 6.13.12 na API | Alto | Baixo | Este ciclo |
+| 2 | axe no teste de ponta a ponta, claro e escuro | Alto | Baixo | Este ciclo (#70) |
+| 3 | Hipótese com meta | Médio | Baixo | Este ciclo |
+| 4 | Token opcional do GitHub | Médio | Baixo | Este ciclo (#65) |
+| 5 | Distância de cada dev na busca | Médio | Médio | Issue (#66) |
+| 6 | Abrir o app num aparelho | Médio | Baixo | Issue (#69) |
+| 7 | Mesclar a sprint e decidir a publicação | Alto | Baixo | Responsável (#68, #61) |
+
+### Engenharia
+
+**Arquitetura.** Sem mudança. O `githubService` recebe o token pela configuração; sem token, segue igual.
+
+**Riscos.** O token é segredo do responsável: só vai para os segredos do Render, nunca para o código.
+
+**Definição de pronto.** CI verde no PR, com o axe no job `e2e`; `docs/MVP.md` com comando, data e resultado.
+
+### Plano de ação
+
+**Este ciclo executa.** mongoose, #70, #65 e a hipótese com meta.
+
+**Fica com o responsável.** #68 (merge), #61 (publicação), #62 (fecha no merge). Ficam como issue: #66 e #69.
