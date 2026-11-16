@@ -1,6 +1,6 @@
 # MVP — dev-radar
 
-> Revisto em 09/11/2026 (ciclo de 07/11/2026), em 10/11/2026 (critério 10) e em 16/11/2026 (critérios 2, 8, 9 e 11). Nível: **Estudo (N1)**. Os critérios 5 e 7 não se aplicam ao N1 e saem da conta. Testado no Windows, com Node 24, no clone da `feature/2026-11-16`. Não houve teste com pessoas nem em aparelho real.
+> Revisto em 09/11/2026 (ciclo de 07/11/2026), em 10/11/2026 (critério 10) e em 15/11/2026 (critérios 2, 8, 9 e 11). Nível: **Estudo (N1)**. Os critérios 5 e 7 não se aplicam ao N1 e saem da conta. Testado no Windows, com Node 24, no clone da `feature/2026-11-16`. Não houve teste com pessoas nem em aparelho real.
 
 **Resumo:** 10 de 10 aplicáveis atendidos
 
@@ -9,29 +9,29 @@
 | # | Critério | Como verificar | Situação | Evidência e data |
 |---|---|---|---|---|
 | 1 | Problema e público claros | Dá para explicar em uma frase | Atende: quem procura devs por tecnologia os encontra no mapa. | README, 09/11/2026 |
-| 2 | Hipótese a validar | Existe uma aposta escrita, com meta | Atende: seção "Hipótese", com meta e o "saberemos quando"; sem validação com pessoas (N1: a meta é o fluxo rodar na tela e nos testes). | Seção "Hipótese", 16/11/2026 |
+| 2 | Hipótese a validar | Existe uma aposta escrita, com meta | Atende: seção "Hipótese", com meta e o "saberemos quando"; sem validação com pessoas (N1: a meta é o fluxo rodar na tela e nos testes). | Seção "Hipótese", 15/11/2026 |
 | 3 | Fluxo principal completo | Uma pessoa conclui sem ajuda | Atende: no navegador, o formulário recebe a posição do navegador, cadastra o dev, mostra o cartão, recusa usuário inexistente com a mensagem da API e remove o dev com confirmação. A busca por tecnologia num raio de 10 km (rota `/search`, chamada direto na API, como o app faz) acha o dev perto e não acha a 130 km. A tela do app não foi aberta (sem aparelho). | `npm run test:e2e` em `web` (Playwright 1.65, Chromium local, API `npm run demo` em memória com perfil do GitHub simulado, dados de demonstração criados pelo teste): 1 passed, 09/11/2026; job `e2e` no CI |
 | 4 | Escopo enxuto | O que não entra está registrado | Atende: seção "Fora do MVP". | 09/11/2026 |
 | 5 | Medição de uso | A métrica principal é coletada | Não se aplica (N1). | Decisão 2 do processo |
-| 6 | Falhas tratadas | Erro, vazio e carregamento têm resposta clara | Atende: sem API, a web mostra o erro e "Tentar novamente"; sem localização, pede latitude e longitude; usuário inexistente e cota do GitHub com mensagem clara. | `npm test` em `web` (3 passed) e `backend` (10 pass); `fluxo.e2e.js`, 16/11/2026 |
+| 6 | Falhas tratadas | Erro, vazio e carregamento têm resposta clara | Atende: sem API, a web mostra o erro e "Tentar novamente"; sem localização, pede latitude e longitude; usuário inexistente e cota do GitHub com mensagem clara. | `npm test` em `web` (3 passed) e `backend` (10 pass); `fluxo.e2e.js`, 15/11/2026 |
 | 7 | Desempenho aceitável | LCP de até 2,5 s no celular | Não se aplica (N1). `dev-radar.onrender.com` respondeu 404 em 09/11/2026. | `curl`, 09/11/2026; #61 |
-| 8 | Acessibilidade básica | axe e teclado | Atende: axe (WCAG A e AA) sem violações no teste de navegador, em 3 estados (carregado, depois do cadastro e com o erro de usuário inexistente); o teste acha os campos pelos rótulos e o botão "Remover" pelo nome acessível; foco visível e sem rolagem em 375 px (ciclo de 02/11/2026). A web não tem tema escuro próprio, então a checagem no escuro não se aplica. | `cd web && npm run test:e2e`: 3 execuções, 1 passed em cada, 16/11/2026; job `e2e` no CI |
-| 9 | Segurança e conformidade | Riscos decididos | Atende: API com mongoose 6.13.12 e `npm audit --omit=dev` 0; web sem alertas; app no Expo 57 com 0 crítico e 0 alto no `npm audit`. O token do GitHub é opcional e só vai nos segredos da hospedagem. Na `master` o Dependabot ainda lista 76 alertas abertos do `mobile/package-lock.json` antigo (`gh api repos/douglasabnovato/dev-radar/dependabot/alerts?state=open`); fecham quando a migração chegar à `master` (#68). | `npm audit --omit=dev` em `backend`: 0; `gh api .../dependabot/alerts?state=open`, 16/11/2026 |
+| 8 | Acessibilidade básica | axe e teclado | Atende: axe (WCAG A e AA) sem violações no teste de navegador, em 3 estados (carregado, depois do cadastro e com o erro de usuário inexistente); o teste acha os campos pelos rótulos e o botão "Remover" pelo nome acessível; foco visível e sem rolagem em 375 px (ciclo de 02/11/2026). A web não tem tema escuro próprio, então a checagem no escuro não se aplica. | `cd web && npm run test:e2e`: 3 execuções, 1 passed em cada, 15/11/2026; job `e2e` no CI |
+| 9 | Segurança e conformidade | Riscos decididos | Atende: API com mongoose 6.13.12 e `npm audit --omit=dev` 0; web sem alertas; app no Expo 57 com 0 crítico e 0 alto no `npm audit`. O token do GitHub é opcional e só vai nos segredos da hospedagem. Na `master` o Dependabot ainda lista 76 alertas abertos do `mobile/package-lock.json` antigo (`gh api repos/douglasabnovato/dev-radar/dependabot/alerts?state=open`); fecham quando a migração chegar à `master` (#68). | `npm audit --omit=dev` em `backend`: 0; `gh api .../dependabot/alerts?state=open`, 15/11/2026 |
 | 10 | Entrega confiável | CI verde antes de entrar na principal | Atende: o workflow `CI` (jobs `backend`, `web`, `mobile` e `e2e`) roda em PR e push para `master` e `developer/**`; a `master` tem o ruleset `principal-protegida` ativo (exige PR, bloqueia force push e exclusão). | `gh api repos/douglasabnovato/dev-radar/rulesets`, 10/11/2026: `principal-protegida`, `enforcement: active`; #62 |
-| 11 | Testes dos fluxos críticos | Testes automatizados no CI | Atende: 10 na API, 3 na web, 3 no app, 1 de ponta a ponta no navegador; o CI também empacota o app para Android (`expo export`). | `npm test` em `backend` (10 pass) e `web` (3 passed), `npm run test:e2e` (1 passed), 16/11/2026 |
+| 11 | Testes dos fluxos críticos | Testes automatizados no CI | Atende: 10 na API, 3 na web, 3 no app, 1 de ponta a ponta no navegador; o CI também empacota o app para Android (`expo export`). | `npm test` em `backend` (10 pass) e `web` (3 passed), `npm run test:e2e` (1 passed), 15/11/2026 |
 | 12 | Documentação honesta | O README ensina a rodar | Atende: comandos conferidos com o `package.json`, inclusive `npm run demo` e `npm run test:e2e`; aviso de estudo; estado e próximos passos. | README, 09/11/2026 |
 
 ## Hipótese
 
 Acreditamos que quem procura devs por tecnologia encontra alguém perto cadastrando só o usuário do GitHub e buscando pela tecnologia no mapa. Saberemos quando o fluxo cadastrar → achar na busca num raio de 10 km → remover passar no teste de navegador do CI, e quando uma pessoa de fora concluir o cadastro sem ajuda em até 1 minuto. Esse teste com pessoas ainda não foi feito.
 
-Meta decidida pelo coordenador em 16/11/2026, revisável.
+Meta decidida pelo coordenador em 15/11/2026, revisável.
 
 ## Fora do MVP
 
 Contas e mensagens.
 
-## Neste ciclo (16/11/2026)
+## Neste ciclo (15/11/2026)
 
 axe no teste de navegador, em 3 estados (#70); token opcional do GitHub (#65); mongoose 6.13.12; hipótese com meta.
 

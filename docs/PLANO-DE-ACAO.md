@@ -129,9 +129,9 @@
 
 **Vira issue.** #68 (mesclar, responsável), #69 (app num aparelho), #70 (axe no teste de ponta a ponta).
 
-## Ciclo de 16/11/2026
+## Ciclo de 15/11/2026
 
-> Branch `feature/2026-11-16` → `developer/sprint-2026-11-12` → `master`. A sprint ainda não foi para a `master` (PR #72), então o trabalho entra nela. Nível: Estudo (N1).
+> Branch `feature/2026-11-16` (o nome usa a data em UTC; o trabalho é de 15/11/2026, no horário de Brasília) → `developer/sprint-2026-11-12` → `master`. A sprint ainda não foi para a `master` (PR #72), então o trabalho entra nela. Nível: Estudo (N1).
 
 ### Produto
 
