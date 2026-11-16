@@ -22,3 +22,6 @@ yarn-error.log*
 # Expo (gerado localmente)
 .expo/
 .expo-shared/
+
+# export do CI
+/ci-export

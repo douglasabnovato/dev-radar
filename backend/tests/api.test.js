@@ -10,32 +10,7 @@ const calculateDistance = require('../src/utils/calculateDistance');
 const parseStringAsArray = require('../src/utils/parseStringAsArray');
 const { createConnectionRegistry } = require('../src/websocket');
 const { createGithubService } = require('../src/services/githubService');
-
-/* Repositório em memória com o mesmo contrato do mongoDevRepository. */
-function createMemoryRepository() {
-    const devs = new Map();
-    return {
-        list: async () => [...devs.values()],
-        findByUsername: async (username) => devs.get(username.toLowerCase()) || null,
-        create: async ({ latitude, longitude, ...data }) => {
-            const dev = { _id: String(devs.size + 1), ...data, location: { type: 'Point', coordinates: [longitude, latitude] } };
-            devs.set(dev.github_username, dev);
-            return dev;
-        },
-        updateByUsername: async (username, { techs, latitude, longitude }) => {
-            const dev = devs.get(username.toLowerCase());
-            if (!dev) return null;
-            if (techs) dev.techs = techs;
-            if (latitude !== undefined) dev.location = { type: 'Point', coordinates: [longitude, latitude] };
-            return dev;
-        },
-        deleteByUsername: async (username) => devs.delete(username.toLowerCase()),
-        searchNear: async ({ latitude, longitude, techs, maxDistance }) =>
-            [...devs.values()].filter((dev) =>
-                dev.techs.some((tech) => techs.includes(tech)) &&
-                calculateDistance({ latitude, longitude }, { latitude: dev.location.coordinates[1], longitude: dev.location.coordinates[0] }) * 1000 <= maxDistance),
-    };
-}
+const { createMemoryRepository } = require('../src/repositories/memoryDevRepository');
 
 const JUIZ_DE_FORA = { latitude: -21.7642, longitude: -43.3503 };
 let app;
@@ -143,5 +118,17 @@ test('serviço do GitHub avisa quando a cota de consultas acaba', async () => {
     await assert.rejects(tooMany.getUser('x'), (err) => err.status === 429 && /mais tarde/.test(err.message));
     const forbidden = createGithubService(async () => ({ ok: false, status: 403, headers: headers({ 'x-ratelimit-remaining': '12' }) }));
     await assert.rejects(forbidden.getUser('x'), { status: 503 });
+});
+test('serviço do GitHub manda o token só quando ele existe', async () => {
+    const vistos = [];
+    const fake = async (url, options) => {
+        vistos.push(options.headers);
+        return { ok: true, status: 200, headers: { get: () => null }, json: async () => ({ login: 'ana', name: 'Ana', avatar_url: 'https://x/a.png', bio: '' }) };
+    };
+    await createGithubService(fake, 'token-de-teste').getUser('ana');
+    await createGithubService(fake).getUser('ana');
+    assert.equal(vistos[0].Authorization, 'Bearer token-de-teste');
+    assert.equal('Authorization' in vistos[1], false);
+    assert.equal(vistos[1]['User-Agent'], 'devradar');
 });
 /* fim de api.test.js */
