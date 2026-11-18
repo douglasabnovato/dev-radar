@@ -55,14 +55,14 @@ O Dev Radar é uma aplicação que segue alguns parâmetros para localizar desen
 
 ## ▶️ Como executar
 
-Pré-requisitos: Node.js 20 e um cluster gratuito no MongoDB Atlas.
+Pré-requisitos: Node.js 22.12 ou mais (o Vite 8 e o `@axe-core/playwright` 4.14 exigem; o CI usa o 22) e um cluster gratuito no MongoDB Atlas (ou `npm run demo`, sem banco).
 
 ```bash
 # API (porta 3333)
 cd backend
 cp .env.example .env      # preencha MONGODB_URI
 npm install
-npm run dev               # ou npm start · npm test (9 testes)
+npm run dev               # ou npm start · npm test (10 testes)
 npm run demo              # sem MongoDB: dados em memória (somem ao parar)
 
 # Web (porta 3000)
@@ -109,9 +109,9 @@ API no Render (web service free, com WebSocket) + MongoDB Atlas M0; web no Rende
 | Antes (27/09/2026) | 3,10 | Reprovado — credenciais do banco no código, tempo real quebrado e app móvel sem compilar |
 | Depois (27/09/2026) | 7,68 | Aprovado — falta trocar a senha do Atlas e validar o app num aparelho |
 
-## Estado e próximos passos (ciclo de 15/11/2026)
+## Estado e próximos passos (conferido em 18/11/2026)
 
-Projeto de estudo (N1): 10 de 10 critérios aplicáveis atendidos. Finalizado: sim. Dos 3 alertas do Dependabot no app móvel (16/11/2026), 1 foi corrigido na sprint-19 e 2 estão aceitos na [ADR-006](docs/ARQUITETURA.md#adr-006--aceitar-os-alertas-de-desenvolvimento-do-dependabot), porque ficam nas ferramentas de build e de teste e não entram no app. A `master` está protegida desde 10/11/2026 (ruleset `principal-protegida`, #62).
+Projeto de estudo (N1): 10 de 10 critérios aplicáveis atendidos. Finalizado: sim. O Dependabot tem 1 alerta aberto no app móvel, o `minimatch`, aceito na [ADR-006](docs/ARQUITETURA.md#adr-006--aceitar-os-alertas-de-desenvolvimento-do-dependabot), porque fica nas ferramentas de build e não entra no app. A `master` exige PR e os 4 jobs do CI verdes (ruleset `principal-protegida`, #62).
 
 **O que foi feito**
 - Web migrada do Create React App para Vite e app móvel incluído no CI (#48); `zod` 4 na API (#50 a #56).
@@ -119,14 +119,14 @@ Projeto de estudo (N1): 10 de 10 critérios aplicáveis atendidos. Finalizado: s
 - Ciclo de 07/11/2026: app móvel migrado do Expo 43 para o Expo 57, com React Navigation 7; o `npm audit` do app foi para 0 crítico e 0 alto (#63). O CI empacota o app para Android.
 - Fluxo principal percorrido no navegador com Playwright, no job `e2e` do CI (#64); `npm run demo` sobe a API sem MongoDB.
 - Ciclo de 15/11/2026: axe no teste de navegador, em 3 estados (#70); token opcional do GitHub, `GITHUB_TOKEN`, para subir a cota de consultas (#65); mongoose 6.13.12; hipótese com meta no `docs/MVP.md`.
+- 16/11/2026: `glob` fora do app (#81 e #77) e ADR-006 para os alertas que não chegam ao app (#78).
 
 **O que queremos fazer**
-- #78 Os 2 alertas que restam no app (`minimatch` e `deepmerge`) estão na [ADR-006](docs/ARQUITETURA.md#adr-006--aceitar-os-alertas-de-desenvolvimento-do-dependabot); revisar na migração para o Expo 58.
-- #61 Decidir a publicação no Render (responsável). O endereço `dev-radar.onrender.com` respondeu 404 em 09/11/2026, por isso não há link aqui.
-- #62 Proteger a `master`: feito em 10/11/2026; a issue fecha no merge da `master`.
-- #66 Mostrar a distância de cada dev na busca.
-- #68 Mesclar o ciclo de 07/11/2026 na sprint e na `master` (responsável).
 - #69 Abrir o app migrado (Expo 57) num aparelho.
+- #85 Testar erro, vazio e localização negada na tela do mapa do app.
+- #84 Manter o `docs/MVP.md` e este README iguais ao que a API mostra.
+- #61 Decidir a publicação no Render (responsável). O endereço `dev-radar.onrender.com` respondeu 404 em 18/11/2026, por isso não há link aqui.
+- O `minimatch` da ADR-006 se revê na migração para o Expo 58.
 
 ## :rocket: Tecnologias
 
