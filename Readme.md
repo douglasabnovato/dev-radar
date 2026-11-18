@@ -55,7 +55,7 @@ O Dev Radar é uma aplicação que segue alguns parâmetros para localizar desen
 
 ## ▶️ Como executar
 
-Pré-requisitos: Node.js 22.12 ou mais (o Vite 8 e o `@axe-core/playwright` 4.14 exigem; o CI usa o 22) e um cluster gratuito no MongoDB Atlas (ou `npm run demo`, sem banco).
+Pré-requisitos: Node.js 22.12 ou mais (o `@axe-core/playwright` 4.14 exige; o CI usa o 22) e um cluster gratuito no MongoDB Atlas (ou `npm run demo`, sem banco).
 
 ```bash
 # API (porta 3333)
@@ -119,7 +119,7 @@ Projeto de estudo (N1): 10 de 10 critérios aplicáveis atendidos. Finalizado: s
 - Ciclo de 07/11/2026: app móvel migrado do Expo 43 para o Expo 57, com React Navigation 7; o `npm audit` do app foi para 0 crítico e 0 alto (#63). O CI empacota o app para Android.
 - Fluxo principal percorrido no navegador com Playwright, no job `e2e` do CI (#64); `npm run demo` sobe a API sem MongoDB.
 - Ciclo de 15/11/2026: axe no teste de navegador, em 3 estados (#70); token opcional do GitHub, `GITHUB_TOKEN`, para subir a cota de consultas (#65); mongoose 6.13.12; hipótese com meta no `docs/MVP.md`.
-- 16/11/2026: `glob` fora do app (#81 e #77) e ADR-006 para os alertas que não chegam ao app (#78).
+- 16 e 17/11/2026: `glob` fora do app (#81 na sprint e #77 na `master`) e ADR-006 para os alertas que não chegam ao app (#78).
 
 **O que queremos fazer**
 - #69 Abrir o app migrado (Expo 57) num aparelho.
