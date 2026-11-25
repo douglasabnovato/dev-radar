@@ -60,7 +60,8 @@ li.dev-item .dev-actions{
     gap: 8px;
     justify-content: space-between;
     align-items: center;
-    margin-top: 10px;
+    /* margin-top: 0 não muda a tela: os 10 px acima das ações vêm da margem de baixo do p da bio, porque as 2 colapsavam (R19 do UX/UI no #97) */
+    margin-top: 0;
 }
 
 /* Alvos de toque de 44 x 44 px (#93): antes, o link e o "Remover" tinham cerca de 17 px de altura e ficavam a 7 px um do outro */
