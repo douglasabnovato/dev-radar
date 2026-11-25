@@ -60,6 +60,18 @@ test("cadastra dev, encontra pela busca e remove", async ({ page, request }) => 
   await expect(page.getByRole("status").filter({ hasText: "Dev cadastrado!" })).toBeVisible();
   const cartao = page.locator(".dev-item").filter({ hasText: `Dev ${usuario}` });
   await expect(cartao).toContainText(`${tech}, react`);
+  /* Alvos de toque do cartão (#93): o link e o "Remover" com pelo menos 44 x 44 px e sem sobreposição (regra da casa; WCAG 2.5.8 pede 24) */
+  const alvos = await Promise.all([
+    cartao.getByRole("link", { name: /Acessar o perfil no GitHub/ }).boundingBox(),
+    cartao.getByRole("button", { name: /Remover/ }).boundingBox(),
+  ]);
+  for (const c of alvos) {
+    expect(c.height, "altura do alvo").toBeGreaterThanOrEqual(44);
+    expect(c.width, "largura do alvo").toBeGreaterThanOrEqual(44);
+  }
+  const [a, b] = alvos;
+  const separados = a.x + a.width <= b.x || b.x + b.width <= a.x || a.y + a.height <= b.y || b.y + b.height <= a.y;
+  expect(separados, "os 2 alvos sem sobreposição").toBe(true);
   await semViolacoes(page);
 
   /* Busca do app: perto de Juiz de Fora acha; no Rio (a ~130 km) não acha */

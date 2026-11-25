@@ -56,12 +56,24 @@ li.dev-item a:hover{
 
 li.dev-item .dev-actions{
     display: flex;
+    flex-wrap: wrap;
+    gap: 8px;
     justify-content: space-between;
     align-items: center;
     margin-top: 10px;
 }
 
+/* Alvos de toque de 44 x 44 px (#93): antes, o link e o "Remover" tinham cerca de 17 px de altura e ficavam a 7 px um do outro */
+li.dev-item .dev-actions a,
 li.dev-item .remove{
+    display: inline-flex;
+    align-items: center;
+    min-height: 44px;
+    min-width: 44px;
+}
+
+li.dev-item .remove{
+    padding: 0; /* o texto alinha com o do link quando as 2 ações quebram em 2 linhas */
     border: 0;
     background: none;
     color: #a4161a;
