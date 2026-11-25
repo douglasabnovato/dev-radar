@@ -53,6 +53,13 @@ test("cadastra dev, encontra pela busca e remove", async ({ page, request }) => 
   await expect(page.getByLabel("Latitude")).toHaveValue("-21.7642");
   await expect(page.getByLabel("Longitude")).toHaveValue("-43.3503");
   await semViolacoes(page);
+  /* Até 480 px, margem lateral de 16 px (#94): o formulário usa a largura da tela menos 2 x 16 px; na mesa, nada muda */
+  const largura = page.viewportSize().width;
+  if (largura <= 480) {
+    const f = await page.locator("#app aside").boundingBox();
+    expect(f.x, "margem esquerda do formulário").toBeCloseTo(16, 0);
+    expect(largura - (f.x + f.width), "margem direita do formulário").toBeCloseTo(16, 0);
+  }
 
   await page.getByLabel("Usuário do GitHub").fill(usuario);
   await page.getByLabel("Tecnologias").fill(`${tech}, React`);
