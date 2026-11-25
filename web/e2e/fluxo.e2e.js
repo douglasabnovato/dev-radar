@@ -53,13 +53,6 @@ test("cadastra dev, encontra pela busca e remove", async ({ page, request }) => 
   await expect(page.getByLabel("Latitude")).toHaveValue("-21.7642");
   await expect(page.getByLabel("Longitude")).toHaveValue("-43.3503");
   await semViolacoes(page);
-  /* Até 480 px, margem lateral de 16 px (#94): o formulário usa a largura da tela menos 2 x 16 px; na mesa, nada muda */
-  const largura = page.viewportSize().width;
-  if (largura <= 480) {
-    const f = await page.locator("#app aside").boundingBox();
-    expect(f.x, "margem esquerda do formulário").toBeCloseTo(16, 0);
-    expect(largura - (f.x + f.width), "margem direita do formulário").toBeCloseTo(16, 0);
-  }
 
   await page.getByLabel("Usuário do GitHub").fill(usuario);
   await page.getByLabel("Tecnologias").fill(`${tech}, React`);
@@ -67,8 +60,24 @@ test("cadastra dev, encontra pela busca e remove", async ({ page, request }) => 
   await expect(page.getByRole("status").filter({ hasText: "Dev cadastrado!" })).toBeVisible();
   const cartao = page.locator(".dev-item").filter({ hasText: `Dev ${usuario}` });
   await expect(cartao).toContainText(`${tech}, react`);
+  /* Margem lateral (#94): até 480 px, o formulário e o cartão ficam a 16 px dos 2 lados; a 481 px, voltam aos 30 px da mesa.
+     No celular-320, mede também a 479, a 480 e a 481 px, porque nenhum projeto roda perto do limite (R19 do QA no #97:
+     com o @media em 400 px, a suíte passava) */
+  const largura = page.viewportSize().width;
+  if (largura <= 480) {
+    for (const [w, m] of [[largura, 16], [479, 16], [480, 16], [481, 30]]) {
+      await page.setViewportSize({ width: w, height: 640 });
+      for (const [nome, alvo] of [["formulário", page.locator("#app aside")], ["cartão", cartao]]) {
+        const c = await alvo.boundingBox();
+        expect(c.x, `margem esquerda do ${nome} a ${w} px`).toBeCloseTo(m, 0);
+        expect(w - (c.x + c.width), `margem direita do ${nome} a ${w} px`).toBeCloseTo(m, 0);
+      }
+    }
+    await page.setViewportSize({ width: largura, height: 640 });
+  }
   /* Alvos de toque do cartão (#93): o link e o "Remover" com pelo menos 44 x 44 px (regra da casa; WCAG 2.5.8 pede 24)
-     e a pelo menos 8 px um do outro, porque o "Remover" é destrutivo (R19 do #96: sem a distância, o gap 0 passava) */
+     e a pelo menos 8 px um do outro, porque o "Remover" é destrutivo (R19 do #96: sem a distância, o gap 0 passava).
+     Na mesma linha, quem separa é o space-between (34 px a 320, 131 na mesa); o gap de 8 px só vale quando as ações quebram (R19 do QA no #97) */
   const [a, b] = await Promise.all([
     cartao.getByRole("link", { name: /Acessar o perfil no GitHub/ }).boundingBox(),
     cartao.getByRole("button", { name: /Remover/ }).boundingBox(),

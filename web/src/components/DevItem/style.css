@@ -60,7 +60,7 @@ li.dev-item .dev-actions{
     gap: 8px;
     justify-content: space-between;
     align-items: center;
-    /* Sem margem em cima (#94, nota 0 da R19 do #96): os alvos de 44 px já centram o texto com cerca de 13 px de folga */
+    /* margin-top: 0 não muda a tela: os 10 px acima das ações vêm da margem de baixo do p da bio, porque as 2 colapsavam (R19 do UX/UI no #97) */
     margin-top: 0;
 }
 
