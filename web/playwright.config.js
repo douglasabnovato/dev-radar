@@ -1,4 +1,4 @@
-/* Teste de ponta a ponta no navegador: sobe a API de demonstração (em memória, GitHub simulado) e o web do Vite */
+/* Teste de ponta a ponta no navegador: sobe a API de demonstração (em memória, GitHub simulado) e o web do Vite; na mesa e num celular de 320 px (#88) */
 import { defineConfig, devices } from "@playwright/test";
 
 /* Portas próprias para não colidir com o `npm start` de quem estiver programando */
@@ -19,7 +19,11 @@ export default defineConfig({
     geolocation: POSICAO,
     permissions: ["geolocation"],
   },
-  projects: [{ name: "chromium", use: { ...devices["Desktop Chrome"] } }],
+  projects: [
+    { name: "chromium", use: { ...devices["Desktop Chrome"] } },
+    /* 320 x 640 px: o menor celular comum e a régua de reflow da WCAG 1.4.10; o Pixel 7 dá o toque e o isMobile */
+    { name: "celular-320", use: { ...devices["Pixel 7"], viewport: { width: 320, height: 640 } } },
+  ],
   webServer: [
     { command: "npm run demo --prefix ../backend", url: `http://localhost:${API_PORT}/health`, env: { PORT: String(API_PORT), DEMO_GITHUB: "offline", CORS_ORIGIN: `http://localhost:${WEB_PORT}` }, reuseExistingServer: !process.env.CI, timeout: 60_000 },
     { command: `npm start -- --port ${WEB_PORT} --strictPort`, url: `http://localhost:${WEB_PORT}`, env: { VITE_API_URL: `http://localhost:${API_PORT}` }, reuseExistingServer: !process.env.CI, timeout: 60_000 },
