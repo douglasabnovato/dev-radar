@@ -25,7 +25,7 @@ export default defineConfig({
     { name: "celular-320", use: { ...devices["Pixel 7"], viewport: { width: 320, height: 640 } } },
   ],
   webServer: [
-    { command: "npm run demo --prefix ../backend", url: `http://localhost:${API_PORT}/health`, env: { PORT: String(API_PORT), DEMO_GITHUB: "offline", CORS_ORIGIN: `http://localhost:${WEB_PORT}` }, reuseExistingServer: !process.env.CI, timeout: 60_000 },
+    { command: "npm run demo --prefix ../backend", url: `http://localhost:${API_PORT}/health`, env: { PORT: String(API_PORT), DEMO_GITHUB: "offline", CORS_ORIGIN: `http://localhost:${WEB_PORT}` }, /* API sempre nova: cada rodada começa com a memória vazia, como no CI (R19 do #92) */ reuseExistingServer: false, timeout: 60_000 },
     { command: `npm start -- --port ${WEB_PORT} --strictPort`, url: `http://localhost:${WEB_PORT}`, env: { VITE_API_URL: `http://localhost:${API_PORT}` }, reuseExistingServer: !process.env.CI, timeout: 60_000 },
   ],
 });

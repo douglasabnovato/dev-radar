@@ -12,13 +12,17 @@ li.dev-item header {
 }
 
 li.dev-item header img {
+    flex-shrink: 0; /* o avatar não encolhe quando o nome é longo */
     width: 54px;
     height: 54px;
     border-radius: 50%;
 }
 
+/* min-width: 0 e overflow-wrap: anywhere: um usuário de 39 letras (o máximo do GitHub) quebra dentro do cartão a 320 px, em vez de levá-lo a 419 px (R19 do #92) */
 li.dev-item header .user-info{
     margin-left: 10px;
+    min-width: 0;
+    overflow-wrap: anywhere;
 }
 
 .user-info h3{

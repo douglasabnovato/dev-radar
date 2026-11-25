@@ -5,7 +5,8 @@ import AxeBuilder from "@axe-core/playwright";
 const API = "http://localhost:3363"; /* mesma porta do playwright.config.js */
 /* Os 2 projetos dividem a mesma API em memória: o sufixo aleatório evita o mesmo usuário nos dois */
 const run = Date.now().toString(36) + Math.random().toString(36).slice(2, 6);
-const usuario = `demo-${run}`;
+/* 39 letras, o máximo do GitHub: o cartão tem de caber a 320 px com o nome mais longo possível (R19 do #92) */
+const usuario = `demo-${run}`.padEnd(39, "x").slice(0, 39);
 const tech = `elixir${run}`;
 
 /* Sem rolagem lateral e sem conteúdo cortado (#88). Três medidas:
@@ -76,6 +77,7 @@ test("cadastra dev, encontra pela busca e remove", async ({ page, request }) => 
   page.once("dialog", (d) => d.accept());
   await cartao.getByRole("button", { name: `Remover Dev ${usuario}` }).click();
   await expect(cartao).toHaveCount(0);
+  await semCorteLateral(page);
   await page.reload();
   await expect(page.locator(".dev-item").filter({ hasText: `Dev ${usuario}` })).toHaveCount(0);
 });
