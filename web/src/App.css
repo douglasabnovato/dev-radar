@@ -26,3 +26,11 @@
         width: 100%;
     }
 }
+
+/* Até 480 px, margem lateral de 16 px (#94): com 30 px, a 320 px sobravam 260 px de conteúdo e o nome longo quebrava em 3 linhas */
+@media (max-width: 480px){
+
+    #app{
+        padding: 24px 16px;
+    }
+}

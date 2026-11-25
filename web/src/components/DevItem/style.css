@@ -12,13 +12,17 @@ li.dev-item header {
 }
 
 li.dev-item header img {
+    flex-shrink: 0; /* o avatar não encolhe quando o nome é longo */
     width: 54px;
     height: 54px;
     border-radius: 50%;
 }
 
+/* min-width: 0 e overflow-wrap: anywhere: um usuário de 39 letras (o máximo do GitHub) quebra dentro do cartão a 320 px, em vez de levá-lo a 419 px (R19 do #92) */
 li.dev-item header .user-info{
     margin-left: 10px;
+    min-width: 0;
+    overflow-wrap: anywhere;
 }
 
 .user-info h3{
@@ -52,12 +56,25 @@ li.dev-item a:hover{
 
 li.dev-item .dev-actions{
     display: flex;
+    flex-wrap: wrap;
+    gap: 8px;
     justify-content: space-between;
     align-items: center;
-    margin-top: 10px;
+    /* margin-top: 0 não muda a tela: os 10 px acima das ações vêm da margem de baixo do p da bio, porque as 2 colapsavam (R19 do UX/UI no #97) */
+    margin-top: 0;
+}
+
+/* Alvos de toque de 44 x 44 px (#93): antes, o link e o "Remover" tinham cerca de 17 px de altura e ficavam a 7 px um do outro */
+li.dev-item .dev-actions a,
+li.dev-item .remove{
+    display: inline-flex;
+    align-items: center;
+    min-height: 44px;
+    min-width: 44px;
 }
 
 li.dev-item .remove{
+    padding: 0; /* o texto alinha com o do link quando as 2 ações quebram em 2 linhas */
     border: 0;
     background: none;
     color: #a4161a;
