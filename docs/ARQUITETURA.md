@@ -89,7 +89,12 @@ Socket.IO: o cliente conecta com `query = { latitude, longitude, techs }`; receb
   - 6 runs, de 01/11, eram de alertas que a migração para o Expo 57 corrigiu em 16/11: `image-size` #557 e `decode-uri-component` #533 e #585.
   - 1 run, de 01/11, era do `minimatch` 3.1.5 da `web`, que não tem alerta aberto hoje.
   - 5 runs, de 01 e 16/11, são do `minimatch` 10.2.6 do app, o #621. Em 16/11, a única saída seria baixar o `expo` de 57.0.32 para 52.0.49.
-  - Esses runs não medem o CI e não pedem correção no código.
+  - Esses runs não medem o CI e não pedem correção no código. A meta do critério 10 do `docs/MVP.md` mede só o workflow `CI`.
+  - **A conta**, para refazer. O `CI` é o `path` `.github/workflows/ci.yml`, e não o nome, que pode mudar:
+    ```
+    gh api "repos/douglasabnovato/dev-radar/actions/runs?branch=master&created=2026-10-23..2026-11-26&per_page=100" --paginate --jq '.workflow_runs[] | [.path, .conclusion] | @tsv'
+    ```
+  - **A regra:** se aparecer um run não verde com outra causa, a conta reabre e o run é investigado. Vale para um run do `CI` e para um do Dependabot com causa diferente de `security_update_not_possible`.
 - **Quando revisar:** se `minimatch`, `deepmerge` ou `@expo/fingerprint` aparecerem no mapa de fontes do `npx expo export`; se sair correção sem versão maior dentro do Expo 57; na migração para o Expo SDK 58.
 
 ## 6. Fora do escopo
