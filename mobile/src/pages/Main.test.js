@@ -14,7 +14,11 @@ jest.mock("react-native-maps", () => {
   return { __esModule: true, default: MapView, Marker, Callout: Marker };
 });
 jest.mock("expo-location", () => ({ requestForegroundPermissionsAsync: jest.fn(), getCurrentPositionAsync: jest.fn() }));
-jest.mock("@expo/vector-icons", () => ({ MaterialIcons: () => null }));
+/* O ícone do botão vira um marcador: some enquanto carrega (o botão mostra o ActivityIndicator) e volta no fim */
+jest.mock("@expo/vector-icons", () => {
+  const { View } = require("react-native");
+  return { MaterialIcons: () => <View testID="icone-buscar" /> };
+});
 jest.mock("../services/api", () => ({ __esModule: true, default: { get: jest.fn() } }));
 jest.mock("../services/socket", () => ({ connect: jest.fn(), disconnect: jest.fn(), subscribeToNewDevs: jest.fn() }));
 
@@ -69,6 +73,38 @@ test("erro de rede: avisa que não falou com o servidor", async () => {
   await buscar("React");
   expect(await screen.findByText("Não foi possível falar com o servidor.")).toBeOnTheScreen();
   expect(connect).not.toHaveBeenCalled();
+});
+
+/* Carregamento (R19 do QA no #99): com a API pendente o botão carrega; no fim, com resultado ou com erro, volta ao ícone */
+test.each([
+  ["com resultado", (fim) => fim.resolver({ data: { devs: [] } })],
+  ["com erro", (fim) => fim.rejeitar(new Error("Network Error"))],
+])("carregamento para no fim da busca %s", async (_, terminar) => {
+  const fim = {};
+  api.get.mockReturnValue(new Promise((resolver, rejeitar) => Object.assign(fim, { resolver, rejeitar })));
+  await render(<Main navigation={navigation} />);
+  await screen.findByTestId("mapa");
+  await fireEvent.changeText(screen.getByLabelText("Tecnologias para buscar, separadas por vírgula"), "React");
+  /* Sem await: no RNTL 14 o press espera o loadDevs, que só termina quando a API responder */
+  const busca = fireEvent.press(screen.getByRole("button", { name: "Buscar devs próximos" }));
+  expect(await screen.findByTestId("mapa")).toBeOnTheScreen();
+  /* Carregando: o ícone dá lugar ao indicador */
+  expect(screen.queryByTestId("icone-buscar")).toBeNull();
+  terminar(fim);
+  await busca;
+  expect(await screen.findByTestId("icone-buscar")).toBeOnTheScreen();
+});
+
+/* Nova busca limpa o aviso da busca anterior (R19 do QA no #99) */
+test("nova busca: o aviso de erro da busca anterior some", async () => {
+  api.get.mockRejectedValueOnce(new Error("Network Error"));
+  await buscar("React");
+  expect(await screen.findByText("Não foi possível falar com o servidor.")).toBeOnTheScreen();
+  const dev = { _id: "2", name: "Grace", bio: "Compiladores", techs: ["React"], github_username: "grace", avatar_url: "https://avatars.githubusercontent.com/u/2", location: { coordinates: [-46.63, -23.55] } };
+  api.get.mockResolvedValueOnce({ data: { devs: [dev] } });
+  await fireEvent.press(screen.getByRole("button", { name: "Buscar devs próximos" }));
+  expect(await screen.findByText("Grace")).toBeOnTheScreen();
+  expect(screen.queryByText("Não foi possível falar com o servidor.")).toBeNull();
 });
 
 test("erro da API: mostra a mensagem que o servidor mandou", async () => {
