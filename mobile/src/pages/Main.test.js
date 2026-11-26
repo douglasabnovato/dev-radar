@@ -121,16 +121,21 @@ test("erro da API: mostra a mensagem que o servidor mandou", async () => {
   expect(await screen.findByText("Latitude inválida.")).toBeOnTheScreen();
 });
 /* Devs novos em tempo real (#100): o dev que chega pelo socket aparece no mapa, e o mesmo _id não duplica */
-test("dev novo pelo socket aparece no mapa, sem duplicar", async () => {
-  await render(<Main navigation={navigation} />);
-  await screen.findByTestId("mapa");
+/* Começa com a "Ada" vinda da busca: o dev novo se soma a ela, sem apagar a lista (R19 do QA no #101) */
+test("dev novo pelo socket aparece no mapa, sem duplicar e sem apagar os da busca", async () => {
+  const ada = { _id: "1", name: "Ada", bio: "Pioneira", techs: ["C"], github_username: "ada", avatar_url: "https://avatars.githubusercontent.com/u/1", location: { coordinates: [-46.63, -23.55] } };
+  api.get.mockResolvedValue({ data: { devs: [ada] } });
+  await buscar("C");
+  expect(await screen.findByText("Ada")).toBeOnTheScreen();
   expect(subscribeToNewDevs).toHaveBeenCalledTimes(1);
   const chegou = subscribeToNewDevs.mock.calls[0][0];
   const dev = { _id: "3", name: "Linus", bio: "Kernel", techs: ["C"], github_username: "linus", avatar_url: "https://avatars.githubusercontent.com/u/3", location: { coordinates: [-46.63, -23.55] } };
   await act(async () => chegou(dev));
   expect(await screen.findByText("Linus")).toBeOnTheScreen();
+  expect(screen.getByText("Ada")).toBeOnTheScreen();
   await act(async () => chegou({ ...dev, name: "Linus T." }));
   expect(await screen.findByText("Linus T.")).toBeOnTheScreen();
   expect(screen.queryByText("Linus")).toBeNull();
+  expect(screen.getByText("Ada")).toBeOnTheScreen();
 });
 /* fim de Main.test.js */
