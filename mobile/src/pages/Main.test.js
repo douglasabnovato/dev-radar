@@ -1,10 +1,11 @@
-/* Testes da tela do mapa (#85): localização negada, busca sem tecnologia, busca vazia, erro do servidor e erro de rede.
+/* Testes da tela do mapa (#85 e #100): localização negada, busca sem tecnologia, busca vazia, erro do servidor e erro de rede;
+   o socket, o aviso anunciado ao leitor de tela e os devs que chegam em tempo real.
    O mapa, a localização, a API e o socket são simulados: nada sai da máquina e nenhum aparelho é preciso (o aparelho é a #69) */
 import React from "react";
-import { render, screen, fireEvent } from "@testing-library/react-native";
+import { render, screen, fireEvent, act } from "@testing-library/react-native";
 import { requestForegroundPermissionsAsync, getCurrentPositionAsync } from "expo-location";
 import api from "../services/api";
-import { connect } from "../services/socket";
+import { connect, disconnect, subscribeToNewDevs } from "../services/socket";
 import Main from "./Main";
 
 jest.mock("react-native-maps", () => {
@@ -55,7 +56,10 @@ test("busca sem tecnologia: pede uma e não chama a API", async () => {
 test("busca vazia: avisa que não há devs no raio de 10 km", async () => {
   api.get.mockResolvedValue({ data: { devs: [] } });
   await buscar("Cobol");
-  expect(await screen.findByText("Nenhum dev com essas tecnologias num raio de 10 km.")).toBeOnTheScreen();
+  const aviso = await screen.findByText("Nenhum dev com essas tecnologias num raio de 10 km.");
+  expect(aviso).toBeOnTheScreen();
+  /* O TalkBack anuncia o aviso sem a pessoa procurar por ele (#100) */
+  expect(aviso).toHaveProp("accessibilityLiveRegion", "polite");
   expect(api.get).toHaveBeenCalledWith("/search", { params: { latitude: -23.55, longitude: -46.63, techs: "Cobol" } });
   expect(connect).toHaveBeenCalledWith(-23.55, -46.63, "Cobol");
 });
@@ -66,6 +70,10 @@ test("busca com resultado: mostra o dev e nenhum aviso", async () => {
   await buscar("React");
   expect(await screen.findByText("Ada")).toBeOnTheScreen();
   expect(screen.queryByText(/Nenhum dev|Não foi possível/)).toBeNull();
+  /* O socket reconecta com a posição e as tecnologias, e desconecta antes, para não somar conexões (#100) */
+  expect(connect).toHaveBeenCalledWith(-23.55, -46.63, "React");
+  expect(disconnect).toHaveBeenCalled();
+  expect(disconnect.mock.invocationCallOrder[0]).toBeLessThan(connect.mock.invocationCallOrder[0]);
 });
 
 test("erro de rede: avisa que não falou com o servidor", async () => {
@@ -111,5 +119,18 @@ test("erro da API: mostra a mensagem que o servidor mandou", async () => {
   api.get.mockRejectedValue({ response: { data: { error: "Latitude inválida." } } });
   await buscar("React");
   expect(await screen.findByText("Latitude inválida.")).toBeOnTheScreen();
+});
+/* Devs novos em tempo real (#100): o dev que chega pelo socket aparece no mapa, e o mesmo _id não duplica */
+test("dev novo pelo socket aparece no mapa, sem duplicar", async () => {
+  await render(<Main navigation={navigation} />);
+  await screen.findByTestId("mapa");
+  expect(subscribeToNewDevs).toHaveBeenCalledTimes(1);
+  const chegou = subscribeToNewDevs.mock.calls[0][0];
+  const dev = { _id: "3", name: "Linus", bio: "Kernel", techs: ["C"], github_username: "linus", avatar_url: "https://avatars.githubusercontent.com/u/3", location: { coordinates: [-46.63, -23.55] } };
+  await act(async () => chegou(dev));
+  expect(await screen.findByText("Linus")).toBeOnTheScreen();
+  await act(async () => chegou({ ...dev, name: "Linus T." }));
+  expect(await screen.findByText("Linus T.")).toBeOnTheScreen();
+  expect(screen.queryByText("Linus")).toBeNull();
 });
 /* fim de Main.test.js */
